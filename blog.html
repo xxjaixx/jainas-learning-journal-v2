@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Learning Journal | Jaix</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body class="blog-page">
+
+    <!-- ================= NAVBAR ================= -->
+
+    <!-- ================= NAVBAR ================= -->
+<header class="site-header">
+    <nav class="navbar">
+
+        <!-- LOGO -->
+        <a href="index.html" class="logo">
+            <img
+                src="images/logo.png"
+                alt="Jaix Learning Journal Logo"
+            >
+
+            <span>Jaix Learning Journal</span>
+        </a>
+
+        <!-- NAVIGATION RIGHT SIDE -->
+        <div class="nav-menu">
+
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+
+                <li>
+                    <a href="blog.html" class="active">Blog</a>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+
+                <!-- SEARCH BUTTON -->
+                <button
+                    type="button"
+                    class="nav-icon-button"
+                    id="navSearchButton"
+                    aria-label="Search journal entries"
+                    title="Search"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M10.8 4a6.8 6.8 0 1 0 4.25 12.1l4.42 4.42 1.41-1.41-4.42-4.42A6.8 6.8 0 0 0 10.8 4Zm0 2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Z"
+                        />
+                    </svg>
+                </button>
+
+                <button
+    type="button"
+    class="nav-icon-button theme-switch"
+    id="theme-switch"
+    aria-label="Switch to dark mode"
+    title="Switch to dark mode"
+>
+    <img
+        src="images/dark-mode.svg"
+        alt=""
+        class="theme-icon moon-icon"
+        aria-hidden="true"
+    >
+
+    <img
+        src="images/light-mode.svg"
+        alt=""
+        class="theme-icon sun-icon"
+        aria-hidden="true"
+    >
+</button>
+
+                <!-- PROFILE BUTTON -->
+                <a href="myprofile.html" class="profile-button">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z"
+                        />
+                    </svg>
+
+                    <span>My Profile</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+</header>
+
+    <!-- ================= BLOG CONTENT ================= -->
+
+<main class="blog-main">
+
+    <!-- PAGE INTRODUCTION -->
+    <section class="blog-intro">
+
+        <div class="blog-intro-text">
+            <p class="blog-label">My Academic Journal</p>
+
+            <h1>My Learning Journal</h1>
+
+            <p class="blog-description">
+                Documenting my learning journey through class meetings,
+                activities, insights, and reflections throughout the semester.
+            </p>
+        </div>
+
+        <button
+            type="button"
+            id="addJournal"
+            class="add-journal-button"
+        >
+            <span aria-hidden="true">＋</span>
+            Add Journal
+        </button>
+
+    </section>
+
+    <!-- SEARCH, FILTERS, AND SORT -->
+    <section class="journal-toolbar">
+
+        <div class="search-box">
+
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                    d="M11 4a7 7 0 1 0 4.9 12l4.05 4.05 1.4-1.4-4.05-4.05A7 7 0 0 0 11 4Zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Z"
+                />
+            </svg>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search journal entries..."
+                autocomplete="off"
+                aria-label="Search journal entries"
+            >
+
+        </div>
+
+        <div
+            class="category-filters"
+            aria-label="Filter journal entries"
+        >
+            <button
+                type="button"
+                class="filter-button active"
+                data-category="all"
+            >
+                All
+            </button>
+
+            <button
+                type="button"
+                class="filter-button"
+                data-category="Technology"
+            >
+                Technology
+            </button>
+
+            <button
+                type="button"
+                class="filter-button"
+                data-category="Reflections"
+            >
+                Reflections
+            </button>
+
+            <button
+                type="button"
+                class="filter-button"
+                data-category="Study Notes"
+            >
+                Study Notes
+            </button>
+        </div>
+
+        <div class="sort-control">
+            <label for="sortSelect" class="visually-hidden">
+                Sort journal entries
+            </label>
+
+            <select id="sortSelect">
+                <option value="latest">Latest</option>
+                <option value="oldest">Oldest</option>
+                <option value="title">Title</option>
+            </select>
+        </div>
+
+    </section>
+
+    <!-- FEATURED ARTICLE -->
+    <section class="featured-section">
+
+        <article class="featured-post">
+
+            <div class="featured-image">
+
+                <img
+                    src="images/journal/post1.png"
+                    alt="Open notebook and study materials"
+                >
+
+                <span class="featured-badge">Featured</span>
+
+            </div>
+
+            <div class="featured-content">
+
+                <span class="post-category">
+                    Reflections
+                </span>
+
+                <h2>
+                    Setting Intentions for a Meaningful Semester
+                </h2>
+
+                <p>
+                    As the semester begins, I am setting clear intentions
+                    to stay consistent, curious, and mindful throughout
+                    my learning journey.
+                </p>
+
+                <div class="post-meta">
+                    <span>August 20, 2026</span>
+                    <span aria-hidden="true">•</span>
+                    <span>4 min read</span>
+                </div>
+
+                <a href="#" class="read-more-link">
+                    Continue reading
+                    <span aria-hidden="true">→</span>
+                </a>
+
+            </div>
+
+        </article>
+
+    </section>
+
+    <!-- MAIN BLOG LAYOUT -->
+    <div class="blog-content-layout">
+
+        <!-- JOURNAL POSTS -->
+        <section class="journal-feed">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">Latest Entries</p>
+                    <h2>Recent Journal Posts</h2>
+                </div>
+
+            </div>
+
+            <div
+                class="journal-container"
+                id="journalContainer"
+                aria-live="polite"
+            >
+                <!-- Journal cards will still be inserted by blog.js -->
+            </div>
+
+            <div class="load-more-wrapper">
+                <button
+                    type="button"
+                    class="load-more-button"
+                    id="loadMoreButton"
+                >
+                    Load more posts
+                </button>
+            </div>
+
+        </section>
+
+        <!-- SIDEBAR -->
+        <aside class="blog-sidebar">
+
+            <!-- ABOUT -->
+            <section class="sidebar-card about-card">
+
+                <div class="sidebar-icon" aria-hidden="true">
+                    🌿
+                </div>
+
+                <div>
+                    <h2>About the Journal</h2>
+
+                    <p>
+                        A personal space for documenting class meetings,
+                        academic activities, discoveries, and reflections.
+                    </p>
+
+                    <a href="myprofile.html">
+                       
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+            </section>
+
+            <!-- POPULAR POSTS -->
+            <section class="sidebar-card">
+
+                <h2>Popular Posts</h2>
+
+                <div class="popular-post-list">
+
+                    <a href="#" class="popular-post">
+
+                        <img
+                            src="images/journal/post1.png"
+                            alt=""
+                        >
+
+                        <div>
+                            <h3>
+                                Setting Intentions for a Meaningful Semester
+                            </h3>
+
+                            <p>August 20, 2026 · 4 min read</p>
+                        </div>
+
+                    </a>
+
+                    <a href="#" class="popular-post">
+
+                        <img
+                            src="images/journal/post2.png"
+                            alt=""
+                        >
+
+                        <div>
+                            <h3>CIA Triad</h3>
+                            <p>August 10, 2026 · 5 min read</p>
+                        </div>
+
+                    </a>
+
+                    <a href="#" class="popular-post">
+
+                        <img
+                            src="images/journal/post3.png"
+                            alt=""
+                        >
+
+                        <div>
+                            <h3>Authentication</h3>
+                            <p>August 17, 2026 · 4 min read</p>
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+            <!-- SUBSCRIPTION -->
+            <section class="sidebar-card subscribe-card">
+
+                <div class="sidebar-icon" aria-hidden="true">
+                    ✉
+                </div>
+
+                <div>
+                    <h2>Stay in the loop</h2>
+
+                    <p>
+                        Get notified whenever a new journal entry is published.
+                    </p>
+                </div>
+
+                <form class="subscribe-form">
+
+                    <label
+                        for="subscriberEmail"
+                        class="visually-hidden"
+                    >
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="subscriberEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                    <button type="submit">
+                        Subscribe
+                    </button>
+
+                </form>
+
+                <small>
+                    No spam. Unsubscribe anytime.
+                </small>
+
+            </section>
+
+        </aside>
+
+    </div>
+
+</main>
+    <!-- ================= JOURNAL MODAL ================= -->
+
+    <div
+        class="modal"
+        id="journalModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-heading">
+                <div>
+                    <p class="modal-label">Journal Entry</p>
+                    <h2 id="modalTitle">Add New Journal</h2>
+                </div>
+
+                <button
+                    type="button"
+                    id="modalClose"
+                    class="modal-close"
+                    aria-label="Close journal form"
+                >
+                    ×
+                </button>
+            </div>
+
+            <label for="title">Journal title</label>
+
+            <input
+                type="text"
+                id="title"
+                placeholder="Example: Introduction to Computing"
+            >
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="week">Week</label>
+
+                    <input
+                        type="text"
+                        id="week"
+                        placeholder="Week 1"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date</label>
+
+                    <input
+                        type="date"
+                        id="date"
+                    >
+                </div>
+
+            </div>
+
+            <div class="form-group journal-category-field">
+    <label for="category">Category</label>
+
+    <select id="category">
+        <option value="Technology">Technology</option>
+        <option value="Reflections">Reflections</option>
+        <option value="Study Notes">Study Notes</option>
+    </select>
+</div>
+
+<label for="image">Image path</label>
+
+<input
+    type="text"
+    id="image"
+    placeholder="images/journal/post4.png"
+>
+
+            <label for="description">Reflection</label>
+
+            <textarea
+                id="description"
+                rows="6"
+                placeholder="Write what happened during the class meeting..."
+            ></textarea>
+
+            <div class="modal-buttons">
+
+                <button
+                    type="button"
+                    id="cancelBtn"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    id="saveBtn"
+                >
+                    Save Journal
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script src="js/blog.js"></script>
+
+</body>
+</html>

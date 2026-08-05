@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaina's Learning Journal</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="site-header">
+    <nav class="navbar">
+
+        <!-- LOGO -->
+        <a href="index.html" class="logo">
+            <img
+                src="images/logo.png"
+                alt="Jaina's Learning Journal Logo"
+            >
+
+            <span>Jaina's Learning Journal</span>
+        </a>
+
+        <!-- RIGHT SIDE -->
+        <div class="nav-menu">
+
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html" class="active">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="blog.html">
+                        Blog
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+
+                <!-- SEARCH BUTTON -->
+                <button
+                    type="button"
+                    class="nav-icon-button"
+                    id="navSearchButton"
+                    aria-label="Search journal entries"
+                    title="Search"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M10.8 4a6.8 6.8 0 1 0 4.25 12.1l4.42 4.42 1.41-1.41-4.42-4.42A6.8 6.8 0 0 0 10.8 4Zm0 2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Z"
+                        />
+                    </svg>
+                </button>
+
+                <!-- DARK AND LIGHT MODE BUTTON -->
+               <button
+                     type="button"
+                     class="nav-icon-button theme-switch"
+                    id="theme-switch"
+                    aria-label="Switch to dark mode"
+                    title="Switch to dark mode"
+                >
+                    <img
+                        src="images/dark-mode.svg"
+                        alt=""
+                        class="theme-icon moon-icon"
+                    >
+
+                    <img
+                        src="images/light-mode.svg"
+                        alt=""
+                        class="theme-icon sun-icon"
+                    >
+                    </button>
+
+                <!-- PROFILE BUTTON -->
+                <a href="myprofile.html" class="profile-button">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z"
+                        />
+                    </svg>
+
+                    <span>My Profile</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+</header>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+
+        <div class="hero-image">
+            <img src="images/hero.png" alt="Hero Image">
+        </div>
+
+        <div class="hero-content">
+
+            <h3>Welcome to my</h3>
+
+            <h1>Learning Journal</h1>
+
+            <p>
+                Documenting every lesson, reflection,
+                and learning experience throughout
+                my BS Information Technology journey.
+            </p>
+
+            <a href="blog.html" class="btn">
+    Explore Journal
+</a>
+
+        </div>
+
+    </section>
+
+    <!-- ================= LATEST POSTS ================= -->
+
+    <section class="latest">
+
+        <h2>Latest Journal Entries</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <img src="images/journal/post1.png" alt="">
+                <h3>Introduction to Computing</h3>
+                <p>Week 1 Reflection</p>
+            </div>
+
+            <div class="card">
+                <img src="images/journal/post2.png" alt="">
+                <h3>Computer Ethics</h3>
+                <p>Week 2 Reflection</p>
+            </div>
+
+            <div class="card">
+                <img src="images/journal/post3.png" alt="">
+                <h3>Organizational Context</h3>
+                <p>Week 3 Reflection</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 Jaina Marie Asumbrado
+        </p>
+
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>

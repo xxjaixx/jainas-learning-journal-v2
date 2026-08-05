@@ -1,0 +1,188 @@
+/* =========================================
+   BLOG PAGE RESPONSIVE
+========================================= */
+
+@media (max-width:1000px){
+
+    .blog-main{
+        width:92%;
+        padding-top:70px;
+    }
+
+    .blog-page .blog-header h1{
+        font-size:48px;
+    }
+
+    .blog-page .journal-container{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+
+    .blog-page .journal-card > img{
+        height:230px;
+    }
+}
+
+@media (max-width:700px){
+
+    .blog-main{
+        width:90%;
+        padding:55px 0 80px;
+    }
+
+    .blog-page .blog-header{
+        margin-bottom:35px;
+    }
+
+    .blog-page .blog-header h1{
+        font-size:39px;
+    }
+
+    .blog-page .blog-description{
+        font-size:15px;
+        line-height:1.7;
+    }
+
+    .blog-page .journal-tools{
+        grid-template-columns:1fr;
+        gap:12px;
+
+        margin-bottom:32px;
+    }
+
+    .blog-page .search-box input,
+    .blog-page .add-journal-button{
+        min-height:56px;
+    }
+
+    .blog-page .add-journal-button{
+        width:100%;
+    }
+
+    .blog-page .journal-container{
+        grid-template-columns:1fr;
+        gap:24px;
+    }
+
+    .blog-page .journal-card > img{
+        height:225px;
+    }
+
+    .blog-page .journal-content{
+        padding:22px;
+    }
+
+    .blog-page .journal-content h2{
+        font-size:22px;
+    }
+
+    .blog-page .form-row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .blog-page .modal{
+        align-items:flex-start;
+        overflow-y:auto;
+    }
+
+    .blog-page .modal-content{
+        margin:auto;
+        padding:24px;
+    }
+}
+/* =========================================
+   NAVBAR RESPONSIVE
+========================================= */
+
+@media (max-width:900px){
+
+    .navbar{
+        width:min(94%, 1180px);
+        gap:20px;
+    }
+
+    .logo span{
+        font-size:18px;
+    }
+
+    .nav-menu{
+        gap:18px;
+    }
+
+    .nav-links{
+        gap:18px;
+    }
+}
+
+@media (max-width:700px){
+
+    .navbar{
+        min-height:68px;
+    }
+
+    .logo img{
+        width:34px;
+        height:34px;
+    }
+
+    .logo span{
+        display:none;
+    }
+
+    .nav-links{
+        gap:14px;
+    }
+
+    .nav-links a{
+        min-height:68px;
+        font-size:12px;
+    }
+
+    .nav-links a::after{
+        bottom:12px;
+    }
+
+    .nav-icon-button{
+        width:36px;
+        height:36px;
+    }
+
+    .profile-button{
+        width:38px;
+        height:38px;
+        min-height:38px;
+
+        padding:0;
+
+        border-radius:50%;
+    }
+
+    .profile-button span{
+        display:none;
+    }
+}
+
+@media (max-width:480px){
+
+    .navbar{
+        width:94%;
+        gap:10px;
+    }
+
+    .nav-menu{
+        gap:8px;
+    }
+
+    .nav-links{
+        gap:10px;
+    }
+
+    .nav-actions{
+        gap:3px;
+    }
+
+    .nav-icon-button{
+        width:34px;
+        height:34px;
+    }
+}
