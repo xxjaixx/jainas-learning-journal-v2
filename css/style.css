@@ -286,41 +286,76 @@ body{
     outline-offset:3px;
 }
 
-/* HERO */
+/* =========================================
+   PREMIUM JOURNAL HERO
+========================================= */
 
 .hero{
-    width:90%;
-    max-width:1200px;
-    margin:80px auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:60px;
+    width:min(1180px, calc(100% - 100px));
+    margin:70px auto 90px;
+
+    grid-template-columns:460px 1fr;
+
+    gap:55px;
 }
+
 
 .hero-image img{
-    width:450px;
-    border-radius:25px;
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+    width:100%;
+
+    height: 390px;
+
+    object-fit:cover;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 20px 45px rgba(0,0,0,.12);
+
 }
+
 
 .hero-content h3{
-    color:#2F5D3A;
-    font-size:22px;
-    margin-bottom:10px;
+
+    color:#4d7d59;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    margin-bottom:18px;
+
 }
+
 
 .hero-content h1{
+
     font-family:'Playfair Display',serif;
-    font-size:60px;
-    margin-bottom:20px;
-    color:#1e3a2f;
+
+    font-size:72px;
+
+    line-height:-1;
+
+    color:#173d2a;
+
+    margin-bottom:22px;
+
 }
 
+
 .hero-content p{
-    font-size:18px;
+
+    max-width:560px;
+
+    font-size:16px;
+
     line-height:1.8;
+
+    color:#666;
+
     margin-bottom:35px;
+
 }
 
 .btn{
@@ -338,63 +373,10 @@ body{
     transform:translateY(-3px);
 }
 
-/* LATEST POSTS */
+/* =========================================
+   LATEST JOURNAL ENTRIES
+========================================= */
 
-.latest{
-    width:90%;
-    max-width:1200px;
-    margin:100px auto;
-}
-
-.latest h2{
-    text-align:center;
-    font-size:40px;
-    font-family:'Playfair Display',serif;
-    margin-bottom:50px;
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:30px;
-}
-
-.card{
-    background:white;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-10px);
-}
-
-.card img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-}
-
-.card h3{
-    padding:20px 20px 10px;
-}
-
-.card p{
-    padding:0 20px 25px;
-    color:#666;
-}
-
-/* FOOTER */
-
-footer{
-    margin-top:100px;
-    background:#2F5D3A;
-    color:white;
-    text-align:center;
-    padding:25px;
-}
 
 /* BLOG PAGE */
 
@@ -1097,4 +1079,1047 @@ body.dark-mode .logo span,
 body.dark-mode .brand span,
 body.dark-mode .navbar-brand span {
     color: #d9eadc !important;
+}
+/* =========================================
+   PREMIUM HOME DARK MODE
+========================================= */
+
+
+body.dark-mode .hero-content h1{
+
+    color:#e8f3eb !important;
+
+}
+
+
+body.dark-mode .hero-content p{
+
+    color:#c1ccc4;
+
+}
+
+
+body.dark-mode .latest h2{
+
+    color:#edf3ee;
+
+}
+
+
+body.dark-mode .card{
+
+    background:#18251d;
+
+    border-color:#304035;
+
+}
+
+
+body.dark-mode .card h3{
+
+    color:#edf3ee;
+
+}
+
+
+body.dark-mode .card p{
+
+    color:#b8c5bc;
+
+}
+/* =========================================
+ JOURNAL INFORMATION SECTION
+========================================= */
+
+
+.journal-info{
+
+width:min(1180px, calc(100% - 80px));
+
+margin:70px auto;
+
+display:grid;
+
+grid-template-columns:350px 1fr;
+
+gap:25px;
+
+}
+
+
+.quote-card,
+.find-card{
+
+background:white;
+
+border-radius:18px;
+
+padding:30px;
+
+border:1px solid #eeeeea;
+
+}
+
+
+
+.quote-icon{
+
+font-size:50px;
+
+color:#5c9868;
+
+}
+
+
+.quote-card p{
+
+font-family:'Playfair Display',serif;
+
+font-style:italic;
+
+line-height:1.7;
+
+}
+
+
+
+.find-grid{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:20px;
+
+}
+
+
+
+.find-grid h3{
+
+font-size:14px;
+
+color:#285f38;
+
+}
+
+
+.find-grid p{
+
+font-size:13px;
+
+color:#777;
+
+}
+
+
+/* NEWSLETTER */
+
+
+.newsletter{
+
+width:min(1180px, calc(100% - 80px));
+
+margin:40px auto;
+
+padding:20px;
+
+border-radius:18px;
+
+background:white;
+
+border:1px solid #eeeeea;
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+}
+
+
+.newsletter input{
+
+flex:1;
+
+padding:12px 20px;
+
+border-radius:20px;
+
+border:1px solid #ddd;
+
+}
+
+
+.newsletter button{
+
+background:#347444;
+
+color:white;
+
+border:none;
+
+padding:12px 25px;
+
+border-radius:20px;
+
+}
+
+/* =========================================
+   NEW HOMEPAGE DESIGN
+========================================= */
+
+
+/* HERO */
+
+.home-hero{
+
+    width:min(1180px, calc(100% - 80px));
+
+    margin:70px auto 90px;
+
+    display:grid;
+
+    grid-template-columns:400px 1fr;
+
+    align-items:center;
+
+    gap:60px;
+
+}
+
+
+.home-hero-image img{
+
+    width:400px;
+
+    height:300px;
+
+    object-fit:cover;
+
+    border-radius:22px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+
+
+.home-hero-content span{
+
+    color:#3f7650;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+
+.home-hero-content h1{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:58px;
+
+    line-height:1.1;
+
+    margin:15px 0;
+
+    color:#173b28;
+
+}
+
+
+
+.home-hero-content p{
+
+    max-width:560px;
+
+    line-height:1.7;
+
+    color:#666;
+
+    margin-bottom:30px;
+
+}
+
+
+
+.home-hero-content a{
+
+    display:inline-block;
+
+    background:#347444;
+
+    color:white;
+
+    padding:13px 28px;
+
+    border-radius:30px;
+
+    text-decoration:none;
+
+}
+
+
+
+/* LATEST JOURNAL */
+
+
+.home-latest{
+
+    width:min(1180px, calc(100% - 80px));
+
+    margin:auto;
+
+}
+
+
+
+.section-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+
+
+.section-header h2{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:34px;
+
+}
+
+
+
+.section-header a{
+
+    color:#347444;
+
+    text-decoration:none;
+
+}
+
+
+
+.home-post-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+
+
+/* =========================================
+   JOURNAL CARD DESIGN
+========================================= */
+
+
+.journal-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    border:1px solid #eeeeea;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+}
+
+
+.journal-image{
+
+    position:relative;
+
+}
+
+
+.journal-image img{
+
+    width:100%;
+
+    height:350px;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+
+
+.journal-image span{
+
+    position:absolute;
+
+    top:20px;
+
+    right:20px;
+
+    background:white;
+
+    color:#347444;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+}
+
+
+
+.journal-body{
+
+    padding:30px;
+
+}
+
+
+
+.journal-body small{
+
+    color:#67966d;
+
+    font-weight:600;
+
+}
+
+
+
+.journal-body h3{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:30px;
+
+    margin:18px 0;
+
+    color:#26332b;
+
+}
+
+
+
+.journal-body p{
+
+    font-size:16px;
+
+    line-height:1.7;
+
+    color:#666;
+
+}
+
+
+
+.journal-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    border-top:1px solid #eeeeea;
+
+    margin-top:25px;
+
+    padding-top:20px;
+
+}
+
+
+
+.journal-footer a{
+
+    color:#347444;
+
+}
+
+
+
+/* DISCOVER SECTION */
+
+
+.home-discover{
+
+    width:min(1180px, calc(100% - 80px));
+
+    margin:70px auto;
+
+    display:grid;
+
+    grid-template-columns:330px 1fr;
+
+    gap:25px;
+
+}
+
+
+
+.quote-box,
+.discover-box{
+
+    background:white;
+
+    border-radius:18px;
+
+    border:1px solid #eeeeea;
+
+    padding:30px;
+
+}
+
+
+
+.quote-box h2{
+
+    font-size:50px;
+
+    color:#5b9867;
+
+}
+
+
+
+.quote-box p{
+
+    font-family:'Playfair Display',serif;
+
+    font-style:italic;
+
+}
+
+
+
+.find-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.find-grid h3{
+
+    font-size:14px;
+
+    color:#347444;
+
+}
+
+
+
+.find-grid p{
+
+    font-size:13px;
+
+    color:#666;
+
+}
+
+
+
+/* NEWSLETTER */
+
+
+.home-newsletter{
+
+    width:min(1180px, calc(100% - 80px));
+
+    margin:40px auto;
+
+    padding:20px;
+
+    background:white;
+
+    border-radius:18px;
+
+    border:1px solid #eeeeea;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+
+.home-newsletter input{
+
+    flex:1;
+
+    padding:12px 20px;
+
+    border-radius:30px;
+
+    border:1px solid #ddd;
+
+}
+
+
+.home-newsletter button{
+
+    background:#347444;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:30px;
+
+}
+/* =========================================
+   PREMIUM JOURNAL CARD DESIGN
+========================================= */
+
+
+.home-post-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,minmax(0,1fr));
+
+    gap:32px;
+
+    width:100%;
+
+}
+
+
+
+.journal-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    border:1px solid #eeeeea;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+
+.journal-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+
+/* IMAGE */
+
+
+.journal-image{
+
+    position:relative;
+
+}
+
+
+
+.journal-image img{
+
+    width:100%;
+
+    height:350px;
+
+    object-fit:cover;
+
+}
+
+
+
+.journal-image span{
+
+    position:absolute;
+
+    top:20px;
+
+    right:20px;
+
+    background:white;
+
+    color:#347444;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+
+/* CONTENT */
+
+
+.journal-body{
+
+    padding:32px;
+
+}
+
+
+
+.journal-body small{
+
+    color:#67966d;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+
+.journal-body h3{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:30px;
+
+    line-height:1.2;
+
+    margin:20px 0;
+
+    color:#26332b;
+
+}
+
+
+
+.journal-body p{
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    color:#666;
+
+}
+
+
+
+/* FOOTER */
+
+
+.journal-footer{
+
+    border-top:1px solid #eeeeea;
+
+    margin-top:30px;
+
+    padding-top:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+
+
+.journal-footer a{
+
+    color:#347444;
+
+    text-decoration:underline;
+
+    font-size:16px;
+
+}
+
+
+
+.journal-footer span{
+
+    color:#777;
+
+}
+
+/* =====================================
+   DARK MODE TEXT FIX - HOME
+===================================== */
+
+
+body.dark-mode .home-hero-content h1{
+
+    color:#f2f5f1;
+
+}
+
+
+body.dark-mode .home-hero-content p{
+
+    color:#c8d2ca;
+
+}
+
+
+body.dark-mode .home-hero-content span{
+
+    color:#7fc98b;
+
+}
+/* =====================================
+   DARK MODE JOURNAL CARDS
+===================================== */
+
+
+body.dark-mode .journal-card{
+
+    background:#111914;
+
+    border:1px solid #294333;
+
+}
+
+
+body.dark-mode .journal-body h3{
+
+    color:#f3f6f2;
+
+}
+
+
+body.dark-mode .journal-body p{
+
+    color:#c1cbc3;
+
+}
+
+
+body.dark-mode .journal-body small{
+
+    color:#78c47e;
+
+}
+
+
+body.dark-mode .journal-footer{
+
+    border-color:#294333;
+
+}
+
+
+body.dark-mode .journal-footer a{
+
+    color:#8bd58d;
+
+}
+
+
+body.dark-mode .journal-footer span{
+
+    color:#cbd3cc;
+
+}
+
+
+body.dark-mode .journal-image span{
+
+    background:#111914;
+
+    color:#8bd58d;
+
+}
+
+/* =========================================
+   COMPACT FOOTER DESIGN
+========================================= */
+
+.site-footer{
+
+    margin-top:80px;
+
+    background:white;
+
+    border-top:1px solid #e8e8e3;
+
+}
+
+
+.footer-container{
+
+    width:min(1180px,90%);
+
+    margin:auto;
+
+    padding:25px 0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+}
+
+
+
+/* BRAND */
+
+.footer-logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.footer-logo img{
+
+    width:35px;
+
+    height:35px;
+
+}
+
+
+.footer-logo h3{
+
+    margin:0;
+
+    font-family:'Playfair Display',serif;
+
+    font-size:15px;
+
+    color:#183b29;
+
+}
+
+
+.footer-logo p{
+
+    margin:3px 0 0;
+
+    font-size:11px;
+
+    color:#777;
+
+}
+
+
+
+/* QUICK LINKS */
+
+.footer-column{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+
+.footer-column h4{
+
+    display:none;
+
+}
+
+
+
+.footer-column a{
+
+    font-size:12px;
+
+    text-decoration:none;
+
+    color:#555;
+
+}
+
+
+
+/* CONNECT */
+
+.footer-social{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+.footer-social a{
+
+    font-size:12px;
+
+}
+
+
+
+/* COPYRIGHT */
+
+
+.footer-copy{
+
+    border-left:1px solid #e5e5e5;
+
+    padding-left:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+}
+
+
+.footer-copy p{
+
+    margin:0;
+
+    font-size:12px;
+
+    color:#666;
+
 }
