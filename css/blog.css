@@ -280,74 +280,7 @@
     font-size:13px;
 }
 
-/* EDIT AND DELETE BUTTONS */
 
-.card-buttons{
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    margin-top:20px;
-    padding-top:18px;
-
-    border-top:1px solid #eeeeea;
-}
-
-.edit-btn,
-.delete-btn{
-    min-height:38px;
-
-    padding:0 16px;
-
-    border:none;
-    border-radius:9px;
-
-    font-family:'Poppins', sans-serif;
-    font-size:13px;
-    font-weight:500;
-
-    cursor:pointer;
-
-    transition:
-        background-color .2s ease,
-        transform .2s ease;
-}
-
-.edit-btn{
-    background:#e8f1ea;
-    color:#2f5d3a;
-}
-
-.edit-btn:hover{
-    background:#d8e8dc;
-    transform:translateY(-1px);
-}
-
-.delete-btn{
-    background:#f9e9e7;
-    color:#b83d35;
-}
-
-.delete-btn:hover{
-    background:#f3d8d5;
-    transform:translateY(-1px);
-}
-
-/* EMPTY SEARCH RESULT */
-
-.no-results{
-    grid-column:1 / -1;
-
-    padding:60px 20px;
-
-    background:#ffffff;
-    color:#6c6c6c;
-
-    border:1px dashed #ced8d0;
-    border-radius:18px;
-
-    text-align:center;
-}
 
 /* =========================================
    MODAL
@@ -613,23 +546,7 @@ body.dark-mode .card-buttons{
     border-color:#313d34;
 }
 
-body.dark-mode .edit-btn{
-    background:#293c2e;
-    color:#a8dab0;
-}
 
-body.dark-mode .edit-btn:hover{
-    background:#334b39;
-}
-
-body.dark-mode .delete-btn{
-    background:#442724;
-    color:#f2aaa4;
-}
-
-body.dark-mode .delete-btn:hover{
-    background:#56302c;
-}
 
 /* Empty search result */
 
@@ -1208,8 +1125,7 @@ body.blog-page {
     gap: 10px;
 }
 
-.blog-page .edit-btn,
-.blog-page .delete-btn,
+
 .blog-page .bookmark-button {
     padding: 0;
     background: transparent;
@@ -1219,13 +1135,6 @@ body.blog-page {
     cursor: pointer;
 }
 
-.blog-page .edit-btn {
-    color: var(--blog-green);
-}
-
-.blog-page .delete-btn {
-    color: var(--blog-danger);
-}
 
 .blog-page .bookmark-button {
     display: grid;
@@ -1900,26 +1809,6 @@ body.blog-page.dark-mode .journal-week {
 }
 
 
-body.blog-page.dark-mode .edit-btn {
-    color: #e5f0e7 !important;
-    background: #294534;
-}
-
-
-body.blog-page.dark-mode .edit-btn:hover {
-    background: #355b42;
-}
-
-
-body.blog-page.dark-mode .delete-btn {
-    color: #f3e7e6 !important;
-    background: #5a302d;
-}
-
-
-body.blog-page.dark-mode .delete-btn:hover {
-    background: #703b36;
-}
 
 
 body.blog-page.dark-mode .bookmark-button {

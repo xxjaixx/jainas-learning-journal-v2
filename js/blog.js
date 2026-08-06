@@ -313,26 +313,9 @@
 
                         <div class="card-buttons">
 
-                            <button
-                                type="button"
-                                class="edit-btn"
-                                data-action="edit"
-                                data-id="${journal.id}"
-                                aria-label="Edit ${title}"
-                            >
-                                Edit
-                            </button>
+                        
 
-                            <button
-                                type="button"
-                                class="delete-btn"
-                                data-action="delete"
-                                data-id="${journal.id}"
-                                aria-label="Delete ${title}"
-                            >
-                                Delete
-                            </button>
-
+                            
                             <button
                                 type="button"
                                 class="bookmark-button"
@@ -499,96 +482,8 @@
         displayJournals();
     }
 
-    /* =========================================
-       EDIT JOURNAL
-    ========================================= */
-
-    function editJournal(id) {
-        const journal = journals.find(
-            (item) => item.id === id
-        );
-
-        if (!journal) {
-            return;
-        }
-
-        editingJournalId = id;
-
-        if (titleInput) {
-            titleInput.value = journal.title;
-        }
-
-        if (weekInput) {
-            weekInput.value = journal.week;
-        }
-
-        if (categoryInput) {
-            categoryInput.value =
-                journal.category || "Reflections";
-        }
-
-        if (dateInput) {
-            dateInput.value = convertDateForInput(
-                journal.date
-            );
-        }
-
-        if (imageInput) {
-            imageInput.value = journal.image;
-        }
-
-        if (descriptionInput) {
-            descriptionInput.value =
-                journal.description;
-        }
-
-        if (modalTitle) {
-            modalTitle.textContent = "Edit Journal";
-        }
-
-        if (saveBtn) {
-            saveBtn.textContent = "Update Journal";
-        }
-
-        openModal();
-
-        window.requestAnimationFrame(() => {
-            titleInput?.focus();
-        });
-    }
-
-    /* =========================================
-       DELETE JOURNAL
-    ========================================= */
-
-    function deleteJournal(id) {
-        const journal = journals.find(
-            (item) => item.id === id
-        );
-
-        if (!journal) {
-            return;
-        }
-
-        const confirmed = window.confirm(
-            `Delete "${journal.title}"?`
-        );
-
-        if (!confirmed) {
-            return;
-        }
-
-        journals = journals.filter(
-            (item) => item.id !== id
-        );
-
-        saveJournalsToStorage();
-
-        visibleCount = JOURNALS_PER_PAGE;
-
-        displayJournals();
-    }
-
+    
+    
     /* =========================================
        BOOKMARK BUTTON
     ========================================= */
