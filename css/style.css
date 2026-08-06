@@ -1081,3 +1081,20 @@ body .site-header .navbar .nav-links a:hover::after,
 body .site-header .navbar .nav-links a.active::after {
     transform: scaleX(1);
 }
+/* =====================================
+   NAVBAR BRAND DARK MODE FIX
+===================================== */
+
+body.dark-mode .logo,
+body.dark-mode .brand,
+body.dark-mode .navbar-brand,
+body.dark-mode .site-title {
+    color: #d9eadc !important;
+}
+
+
+body.dark-mode .logo span,
+body.dark-mode .brand span,
+body.dark-mode .navbar-brand span {
+    color: #d9eadc !important;
+}

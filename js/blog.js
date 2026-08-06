@@ -920,3 +920,31 @@
 
     displayJournals();
 })();
+
+/* ==========================================
+   FEATURED ARTICLE - CONTINUE READING
+========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const readMoreBtn = document.getElementById("readMoreBtn");
+    const article = document.getElementById("secure-design-post");
+
+    if (readMoreBtn && article) {
+
+        readMoreBtn.addEventListener("click", (e) => {
+
+            e.preventDefault();
+
+            article.classList.remove("hidden");
+
+            article.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        });
+
+    }
+
+});

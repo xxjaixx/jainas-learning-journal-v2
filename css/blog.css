@@ -243,7 +243,7 @@
     padding:7px 14px;
 
     background:#e9f3eb;
-    color:#2f5d3a;
+    color:#f7fbf7;
 
     border-radius:50px;
 
@@ -1605,4 +1605,328 @@ body.blog-page.dark-mode select option {
     .blog-page .featured-content {
         padding: 25px 22px;
     }
+}
+/* ===========================
+   SINGLE BLOG POST PAGE
+=========================== */
+
+.blog-post{
+    max-width:1100px;
+    margin:50px auto;
+    padding:0 20px;
+}
+
+.blog-post .container{
+    max-width:900px;
+    margin:auto;
+}
+
+.back-link{
+    display:inline-block;
+    margin-bottom:20px;
+    color:#2F6B46;
+    font-weight:600;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.back-link:hover{
+    color:#1f4d31;
+}
+
+.post-category{
+    display:inline-block;
+    background:#E9F6EC;
+    color:#2F6B46;
+    padding:6px 14px;
+    border-radius:30px;
+    font-size:.9rem;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.blog-post h1{
+
+    font-family:'Playfair Display', serif;
+    font-size:3rem;
+    color:#173D2A;
+    line-height:1.2;
+    margin-bottom:18px;
+
+}
+
+.post-subtitle{
+
+    color:#666;
+    font-size:1.15rem;
+    line-height:1.8;
+    margin-bottom:20px;
+
+}
+
+.post-meta{
+
+    display:flex;
+    gap:15px;
+    align-items:center;
+    color:#888;
+    margin-bottom:30px;
+    flex-wrap:wrap;
+
+}
+
+.hero-image{
+
+    width:100%;
+    border-radius:18px;
+    margin-bottom:40px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+}
+
+.blog-post article{
+
+    background:#fff;
+    padding:45px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+}
+
+.blog-post article h2{
+
+    margin-top:45px;
+    margin-bottom:15px;
+    color:#1E4D35;
+    font-size:2rem;
+    font-family:'Playfair Display', serif;
+
+}
+
+.blog-post article p{
+
+    line-height:2;
+    color:#555;
+    margin-bottom:20px;
+    text-align:justify;
+
+}
+
+@media(max-width:768px){
+
+.blog-post h1{
+
+font-size:2.2rem;
+
+}
+
+.blog-post article{
+
+padding:25px;
+
+}
+
+}
+
+/* ==========================================
+   FULL BLOG ARTICLE
+========================================== */
+
+.full-article{
+
+    max-width:1100px;
+    margin:80px auto;
+    padding:0 20px;
+
+}
+
+.article-container{
+
+    background:#ffffff;
+    border-radius:20px;
+    padding:50px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+
+}
+
+.article-container h1{
+
+    font-family:'Playfair Display', serif;
+    font-size:3rem;
+    color:#1E4D35;
+    line-height:1.2;
+    margin-bottom:25px;
+
+}
+
+.article-container img{
+
+    width:100%;
+    border-radius:18px;
+    margin:30px 0;
+
+}
+
+.article-content{
+
+    font-size:17px;
+    line-height:2;
+    color:#555;
+
+}
+
+.article-content h2{
+
+    margin-top:45px;
+    margin-bottom:15px;
+    font-size:2rem;
+    color:#1E4D35;
+    font-family:'Playfair Display', serif;
+
+}
+
+.article-content p{
+
+    margin-bottom:20px;
+    text-align:justify;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+@media (max-width:768px){
+
+.article-container{
+
+    padding:30px;
+
+}
+
+.article-container h1{
+
+    font-size:2rem;
+
+}
+
+}
+/* =====================================
+   FINAL DARK MODE HEADING FIX
+===================================== */
+
+body.blog-page.dark-mode {
+    --blog-green-dark: #d9eadc;
+    --blog-green: #91c99c;
+}
+
+
+/* Main Blog Title */
+body.blog-page.dark-mode .blog-intro h1 {
+    color: #d9eadc !important;
+}
+
+
+/* Recent Journal Posts */
+body.blog-page.dark-mode .section-heading h2 {
+    color: #d9eadc !important;
+}
+
+
+/* Small labels */
+body.blog-page.dark-mode .blog-label,
+body.blog-page.dark-mode .section-label {
+    color: #91c99c !important;
+}
+/* =====================================
+   FILTER BUTTONS DARK MODE FIX
+===================================== */
+
+body.blog-page.dark-mode .filter-button {
+    color: #cbd5cf !important;
+    background: #18251d;
+    border-color: #314238;
+}
+
+
+body.blog-page.dark-mode .filter-button:hover {
+    color: #d9eadc !important;
+    border-color: #91c99c;
+}
+
+
+body.blog-page.dark-mode .filter-button.active {
+    color: #ffffff !important;
+    background: #347444;
+    border-color: #347444;
+}
+
+
+/* Sort dropdown */
+body.blog-page.dark-mode .sort-control select {
+    color: #eef4ef !important;
+    background: #18251d;
+    border-color: #314238;
+}
+
+
+/* Dropdown arrow area */
+body.blog-page.dark-mode .sort-control select option {
+    color: #eef4ef;
+    background: #18251d;
+}
+/* =====================================
+   CATEGORY BADGE DARK MODE FIX
+===================================== */
+
+body.blog-page.dark-mode .post-category {
+    color: #a8dab0 !important;
+    background: #233c2b;
+}
+
+
+/* Card week/category labels */
+body.blog-page.dark-mode .journal-week {
+    color: #a8dab0 !important;
+}
+/* =====================================
+   CARD FOOTER DARK MODE IMPROVEMENT
+===================================== */
+
+body.blog-page.dark-mode .journal-week {
+    color: #b7e3c0 !important;
+}
+
+
+body.blog-page.dark-mode .edit-btn {
+    color: #e5f0e7 !important;
+    background: #294534;
+}
+
+
+body.blog-page.dark-mode .edit-btn:hover {
+    background: #355b42;
+}
+
+
+body.blog-page.dark-mode .delete-btn {
+    color: #f3e7e6 !important;
+    background: #5a302d;
+}
+
+
+body.blog-page.dark-mode .delete-btn:hover {
+    background: #703b36;
+}
+
+
+body.blog-page.dark-mode .bookmark-button {
+    color: #c7d1ca !important;
+}
+
+
+body.blog-page.dark-mode .journal-card-footer {
+    border-color: #e9f2ec;
 }

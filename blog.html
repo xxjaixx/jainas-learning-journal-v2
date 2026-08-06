@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Learning Journal | Jaix</title>
+<title>Jaina's Learning Journal</title>
 
     <!-- Google Fonts -->
     <link
@@ -34,10 +34,10 @@
         <a href="index.html" class="logo">
             <img
                 src="images/logo.png"
-                alt="Jaix Learning Journal Logo"
+                alt="Jaina's Learning Journal Logo"
             >
 
-            <span>Jaix Learning Journal</span>
+            <span>Jaina's Learning Journal</span>
         </a>
 
         <!-- NAVIGATION RIGHT SIDE -->
@@ -100,7 +100,7 @@
                         />
                     </svg>
 
-                    <span>My Profile</span>
+                    <span>Profile</span>
                 </a>
 
             </div>
@@ -214,51 +214,56 @@
     <!-- FEATURED ARTICLE -->
     <section class="featured-section">
 
-        <article class="featured-post">
+    <article class="featured-post">
 
-            <div class="featured-image">
+        <div class="featured-image">
 
-                <img
-                    src="images/journal/post1.png"
-                    alt="Open notebook and study materials"
-                >
+            <img
+                src="images/journal/secure-design.png"
+                alt="Secure Design Principles"
+            >
 
-                <span class="featured-badge">Featured</span>
+            <span class="featured-badge">Featured</span>
 
+        </div>
+
+        <div class="featured-content">
+
+            <span class="post-category">
+                Cybersecurity
+            </span>
+
+            <h2>
+                When Fast Becomes Fragile: Rebuilding Student Apps with Secure Design Principles
+            </h2>
+
+            <p>
+                A technical reflection on how a student-built application exposed
+                sensitive information because security was overlooked. This article
+                examines the Secure Design Principles that were violated, the
+                immediate containment steps that should be taken, the long-term
+                improvements needed, and the responsibilities of developers under
+                RA No. 10173 (Data Privacy Act of 2012).
+            </p>
+
+            <div class="post-meta">
+                <span>August 6, 2026</span>
+                <span aria-hidden="true">•</span>
+                <span>12 min read</span>
             </div>
 
-            <div class="featured-content">
+            <a href="javascript:void(0)"
+class="read-more-link"
+id="readMoreBtn">
+    Continue Reading
+    <span aria-hidden="true">→</span>
+</a>
 
-                <span class="post-category">
-                    Reflections
-                </span>
+        </div>
 
-                <h2>
-                    Setting Intentions for a Meaningful Semester
-                </h2>
+    </article>
 
-                <p>
-                    As the semester begins, I am setting clear intentions
-                    to stay consistent, curious, and mindful throughout
-                    my learning journey.
-                </p>
-
-                <div class="post-meta">
-                    <span>August 20, 2026</span>
-                    <span aria-hidden="true">•</span>
-                    <span>4 min read</span>
-                </div>
-
-                <a href="#" class="read-more-link">
-                    Continue reading
-                    <span aria-hidden="true">→</span>
-                </a>
-
-            </div>
-
-        </article>
-
-    </section>
+</section>
 
     <!-- MAIN BLOG LAYOUT -->
     <div class="blog-content-layout">
@@ -531,6 +536,137 @@
         </div>
 
     </div>
+
+    <!-- ================= FULL ARTICLE ================= -->
+
+<section id="secure-design-post" class="full-article hidden">
+
+    <div class="article-container">
+
+        <h1>
+            When Fast Becomes Fragile: Rebuilding Student Apps with Secure Design Principles
+        </h1>
+
+        <img
+            src="images/journal/secure-design.png"
+            alt="Secure Design"
+        >
+
+        <div class="article-content">
+
+<h2>Introduction</h2>
+
+<p>
+The rapid growth of Artificial Intelligence (AI) has transformed how software is developed. Today, developers can build functional applications within hours by using AI coding assistants that generate large portions of source code. While this dramatically increases productivity, it also introduces a dangerous misconception that if an application works, it is automatically safe. The case of the student-built organization management platform demonstrates why security and privacy cannot be treated as optional features. Although the application successfully managed memberships, event payments, and file sharing, it failed to protect the personal information entrusted to it.
+</p>
+
+<p>
+Originally developed during a weekend hackathon, the platform was intended only as a prototype. However, its popularity quickly grew, and multiple student organizations adopted it for real operations. As a result, the application stored hundreds of sensitive records, including student names, student numbers, phone numbers, uploaded identification cards, GCash payment screenshots, and private conversations. Unfortunately, the developers never redesigned the prototype into production-quality software. Instead, the same AI-generated code remained in use despite handling highly sensitive information.
+</p>
+
+<p>
+When one student discovered that simply changing the profile ID in the URL revealed another student's personal record, the seriousness of the problem became clear. Additional investigation revealed exposed database credentials in GitHub, unrestricted database permissions, detailed server error messages, and unencrypted HTTP communication. These weaknesses placed every user's privacy at risk and violated fundamental secure software development practices.
+</p>
+
+<h2>What Went Wrong?</h2>
+
+<p>
+The primary failure was treating a hackathon prototype as production software. AI coding assistants are excellent tools for increasing development speed, but they generate code that prioritizes functionality rather than security. The developers accepted the generated code without performing proper security reviews, penetration testing, or code auditing.
+</p>
+
+<p>
+The application also relied on "security through obscurity." The team assumed that because users did not know the internal URL structure, nobody would attempt to modify URLs manually. This assumption proved false. Any user could simply change the profile number and immediately access another student's personal information because the application never verified ownership of the requested data.
+</p>
+
+<p>
+Equally concerning was the accidental exposure of database passwords and API keys inside a public GitHub repository. Once secrets become publicly available, attackers can connect directly to databases or abuse third-party services. Even if the credentials are later removed, Git history preserves earlier commits unless they are completely rewritten.
+</p>
+
+<h2>Secure Design Principles Violated</h2>
+
+<h3>1. Least Privilege</h3>
+
+<p>
+Every account had broad database read permissions. Instead of allowing users to access only their own information, the system granted excessive privileges. The Principle of Least Privilege requires every user, application, and service to operate with only the minimum permissions necessary to perform its task.
+</p>
+
+<h3>2. Fail Securely</h3>
+
+<p>
+When errors occurred, the application displayed complete stack traces to every visitor. Error messages should never reveal internal implementation details because they provide attackers with valuable information about application structure, database technologies, and server configuration.
+</p>
+
+<h3>3. Defense in Depth</h3>
+
+<p>
+The application depended on a single weak assumption that hidden URLs would remain undiscovered. Proper security requires multiple independent layers such as authentication, authorization, encrypted communication, input validation, monitoring, and logging. If one layer fails, additional protections should remain in place.
+</p>
+
+<h3>4. Secure by Default</h3>
+
+<p>
+The application used plain HTTP instead of HTTPS. Database credentials were stored directly inside source code, and debugging remained enabled in production. A secure application should always begin with safe default settings rather than expecting developers to manually enable security later.
+</p>
+
+<h3>5. Complete Mediation</h3>
+
+<p>
+Every request must be verified before access is granted. In this case, the application authenticated users during login but never checked whether they actually owned the profile they requested afterward. This allowed unauthorized viewing of sensitive information simply by modifying URLs.
+</p>
+
+<h2>Short-Term Containment (First Hours and Days)</h2>
+
+<p>
+The first action should be taking the application offline to prevent additional exposure while an investigation begins. Every compromised credential, including database passwords and payment API keys, must be revoked immediately and replaced with new secure credentials.
+</p>
+
+<p>
+Developers should remove secrets from GitHub history, force password resets for administrator accounts, enable HTTPS, disable debug mode, and implement proper authorization checks before restoring public access. A security assessment should also determine whether any unauthorized access occurred.
+</p>
+
+<p>
+Users whose personal information may have been exposed should receive immediate notification. Transparency helps maintain trust and allows affected individuals to take precautionary measures if necessary.
+</p>
+
+<h2>Long-Term Design Improvements</h2>
+
+<p>
+To prevent future incidents, security must become part of the development lifecycle rather than an afterthought. Authentication should use secure session management, while authorization must verify ownership for every request. Role-Based Access Control (RBAC) should limit permissions according to user responsibilities.
+</p>
+
+<p>
+Sensitive information should always be encrypted during transmission using HTTPS and protected at rest using strong encryption methods. Secrets such as database passwords should never appear inside source code but instead be stored using environment variables or secure secret management services.
+</p>
+
+<p>
+Regular penetration testing, automated vulnerability scanning, dependency updates, and code reviews should become standard development practices. Logging and monitoring should detect suspicious activities before they become serious incidents.
+</p>
+
+<h2>Developer Responsibilities Under RA No. 10173</h2>
+
+<p>
+The Philippine Data Privacy Act of 2012 (RA No. 10173) requires organizations and developers to protect personal information through appropriate organizational, physical, and technical security measures. Student numbers, phone numbers, identification cards, payment screenshots, and private messages all qualify as personal information that deserves protection.
+</p>
+
+<p>
+As developers, we have an ethical and legal responsibility to design systems that respect user privacy from the very beginning. Ignoring secure design principles may expose users to identity theft, financial fraud, reputational damage, and unauthorized surveillance. Compliance with RA No. 10173 means implementing privacy by design, limiting data collection, protecting stored information, and responding responsibly when security incidents occur.
+</p>
+
+<h2>Reflection</h2>
+
+<p>
+This case clearly demonstrates that software development is not only about delivering features quickly but also about protecting the people who trust us with their information. AI coding assistants are powerful tools that can dramatically reduce development time, but they cannot replace professional judgment, security testing, and responsible engineering practices.
+</p>
+
+<p>
+If I were rebuilding this application, I would integrate security into every phase of development instead of adding it after deployment. Every design decision—from authentication and authorization to encryption and secret management—would prioritize user safety. Secure Design Principles such as Least Privilege, Defense in Depth, Complete Mediation, Fail Securely, and Secure by Default would guide every implementation decision.
+</p>
+
+<p>
+Ultimately, shipping software quickly should never come at the expense of privacy and security. The trust users place in developers is far more valuable than winning a hackathon or releasing an application ahead of schedule. As future IT professionals, we must ensure that every system we build respects both the people who use it and the legal responsibilities established by RA No. 10173.
+</p>
+
+</div>
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>
