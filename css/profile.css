@@ -976,3 +976,549 @@ body.profile-page.dark-mode .footer-socials a {
         grid-template-columns: 32px minmax(0, 1fr);
     }
 }
+
+/* =========================================================
+   FINAL PROFILE DESIGN
+   ========================================================= */
+
+
+/* HERO */
+
+.profile-page .profile-hero{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:55px 40px;
+
+    margin-bottom:30px;
+
+    background:var(--profile-surface);
+
+    border:1px solid var(--profile-border);
+
+    border-radius:24px;
+
+    box-shadow:var(--profile-shadow);
+
+}
+
+
+
+/* PHOTO CENTER */
+
+.profile-page .profile-photo-frame{
+
+    width:220px;
+    height:220px;
+
+    margin-bottom:28px;
+
+}
+
+
+
+.profile-page .profile-label{
+
+    margin-bottom:12px;
+
+}
+
+
+
+.profile-page .profile-introduction h1{
+
+    font-size:52px;
+
+    margin:10px 0;
+
+}
+
+
+
+.profile-page .profile-course{
+
+    margin-top:10px;
+
+}
+
+
+
+.profile-page .profile-divider{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:18px;
+
+    margin:22px 0;
+
+    color:var(--profile-green);
+
+}
+
+
+.profile-page .profile-divider span{
+
+    width:60px;
+
+    height:1px;
+
+    background:var(--profile-border);
+
+}
+
+
+
+/* QUOTE */
+
+.profile-page .profile-quote{
+
+    max-width:560px;
+
+    margin:0 auto;
+
+    padding:20px 40px;
+
+    text-align:center;
+
+    border-left:none;
+
+    border-radius:12px;
+
+}
+
+
+
+
+
+/* TWO COLUMN CARDS */
+
+
+.profile-page .profile-card-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+
+
+.profile-page .profile-info-card{
+
+    min-height:300px;
+
+}
+
+
+
+/* CONNECT FULL WIDTH */
+
+
+.profile-page .connect-box{
+
+    margin-top:20px;
+
+    padding:28px;
+
+    background:var(--profile-surface);
+
+    border:1px solid var(--profile-border);
+
+    border-radius:18px;
+
+}
+
+
+
+
+
+.profile-page .connect-links{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+
+
+.profile-page .connect-links a{
+
+    flex:1;
+
+    padding:15px;
+
+    text-align:center;
+
+    border:1px solid var(--profile-border);
+
+    border-radius:10px;
+
+    color:var(--profile-text);
+
+    text-decoration:none;
+
+}
+
+
+
+
+
+/* MOBILE */
+
+
+@media(max-width:760px){
+
+
+.profile-page .profile-introduction h1{
+
+    font-size:34px;
+
+}
+
+
+.profile-page .profile-card-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+
+.profile-page .connect-links{
+
+    flex-direction:column;
+
+}
+
+
+}
+
+/* =================================
+   INTEREST LIST
+================================= */
+
+.profile-page .interest-title{
+
+    margin-top:25px;
+
+    margin-bottom:15px;
+
+    font-size:18px;
+
+    color:var(--profile-heading);
+
+}
+
+
+.profile-page .interest-list{
+
+    margin:0;
+
+    padding:0;
+
+    list-style:none;
+
+    display:grid;
+
+    grid-template-columns:repeat(2, 1fr);
+
+    gap:12px;
+
+}
+
+
+.profile-page .interest-list li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:14px;
+
+    color:var(--profile-text);
+
+}
+
+
+/* =================================
+   INTEREST ICON BOX
+================================= */
+
+
+.profile-page .interest-list li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:14px;
+
+}
+
+
+/* icon container */
+
+.profile-page .interest-list li::before{
+
+    width:24px;
+
+    height:24px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:7px;
+
+    background:#edf6ef;
+
+    color:#347444;
+
+    font-size:12px;
+
+    flex-shrink:0;
+
+}
+
+
+/* different icons */
+
+.profile-page .interest-list li:nth-child(1)::before{
+
+    content:"▣";
+
+}
+
+
+.profile-page .interest-list li:nth-child(2)::before{
+
+    content:"◈";
+
+}
+
+
+.profile-page .interest-list li:nth-child(3)::before{
+
+    content:"⌁";
+
+}
+
+
+.profile-page .interest-list li:nth-child(4)::before{
+
+    content:"▣";
+
+}
+
+
+.profile-page .interest-list li:nth-child(5)::before{
+
+    content:"▤";
+
+}
+/* =================================
+   CONNECT SECTION
+================================= */
+
+
+.profile-page .connect-section{
+
+    margin-top:40px;
+
+    padding:30px;
+
+    background:var(--profile-card);
+
+    border:1px solid var(--profile-border);
+
+    border-radius:20px;
+
+}
+
+
+
+.profile-page .connect-section h2{
+
+    margin-bottom:25px;
+
+    font-size:24px;
+
+    color:var(--profile-heading);
+
+}
+
+
+
+.profile-page .connect-items{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+
+
+/* =================================
+   CONNECT SECTION
+================================= */
+
+
+.profile-page .connect-section{
+
+    margin-top:40px;
+
+    padding:22px 30px;
+
+    background:var(--profile-card);
+
+    border:1px solid var(--profile-border);
+
+    border-radius:18px;
+
+}
+
+
+
+.profile-page .connect-section h2{
+
+    margin-bottom:20px;
+
+    font-size:22px;
+
+    color:var(--profile-heading);
+
+}
+
+
+
+.profile-page .connect-items{
+
+    display:flex;
+
+    align-items:center;
+
+    width:100%;
+
+}
+
+
+
+.profile-page .connect-item{
+
+    flex:1;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:12px 25px;
+
+    text-decoration:none;
+
+    color:var(--profile-text);
+
+}
+
+
+
+.profile-page .connect-item:not(:last-child){
+
+    border-right:1px solid var(--profile-border);
+
+}
+
+
+
+/* ICON BOX */
+
+.profile-page .connect-item::before{
+
+    width:38px;
+
+    height:38px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:10px;
+
+    background:#edf6ef;
+
+    color:#347444;
+
+    font-size:16px;
+
+    flex-shrink:0;
+
+}
+
+
+
+/* ICONS */
+
+.profile-page .connect-item:nth-child(1)::before{
+
+    content:"◎";
+
+}
+
+
+
+.profile-page .connect-item:nth-child(2)::before{
+
+    content:"✉";
+
+}
+
+
+
+.profile-page .connect-item:nth-child(3)::before{
+
+    content:"◉";
+
+}
+
+
+
+.profile-page .connect-item span:first-child{
+
+    display:none;
+
+}
+
+
+
+.profile-page .connect-item span:last-child{
+
+    font-size:14px;
+
+}
