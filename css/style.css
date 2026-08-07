@@ -2124,3 +2124,83 @@ body.dark-mode .journal-image span{
     color:#666;
 
 }   
+/* =========================
+   SEARCH OVERLAY
+========================= */
+
+
+.search-overlay{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,.5);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    padding-top:120px;
+
+    z-index:999;
+
+}
+
+
+
+.search-overlay.active{
+
+    display:flex;
+
+}
+
+
+
+.search-box{
+
+    background:white;
+
+    width:400px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+
+
+.search-box input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    font-size:16px;
+
+}
+
+
+
+.search-box button{
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+}

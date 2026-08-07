@@ -56,3 +56,73 @@ if (themeSwitch) {
 } else {
     console.error("Theme button was not found.");
 }
+// ===============================
+// SEARCH BUTTON
+// ===============================
+
+
+const searchButton =
+document.getElementById("navSearchButton");
+
+
+const searchOverlay =
+document.getElementById("searchOverlay");
+
+
+const closeSearch =
+document.getElementById("closeSearch");
+
+
+const searchInput =
+document.getElementById("searchInput");
+
+
+
+if(searchButton){
+
+
+searchButton.addEventListener(
+"click",
+()=>{
+
+    searchOverlay.classList.add("active");
+
+    searchInput.focus();
+
+});
+
+
+}
+
+
+
+if(closeSearch){
+
+
+closeSearch.addEventListener(
+"click",
+()=>{
+
+    searchOverlay.classList.remove("active");
+
+});
+
+
+}
+
+
+
+
+// CLOSE WHEN CLICK OUTSIDE
+
+searchOverlay?.addEventListener(
+"click",
+(e)=>{
+
+if(e.target === searchOverlay){
+
+searchOverlay.classList.remove("active");
+
+}
+
+});
