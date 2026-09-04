@@ -2,417 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Blog Post | Jaina's Learning Journal</title>
 
-<title>Jaina's Learning Journal</title>
-
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/blog.css">
     <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        .post-page-back {
+            max-width: 900px;
+            margin: 32px auto 0;
+            padding: 0 20px;
+        }
+
+        .post-page-back a {
+            text-decoration: none;
+        }
+
+        #secure-design-post,
+        #risk-assessment-post {
+            display: none;
+        }
+
+        #post-not-found {
+            display: none;
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+    </style>
 </head>
 
 <body class="blog-page">
 
-    <!-- ================= NAVBAR ================= -->
-
-    <!-- ================= NAVBAR ================= -->
-<header class="site-header">
-    <nav class="navbar">
-
-        <!-- LOGO -->
-        <a href="index.html" class="logo">
-            <img
-                src="images/logo.png"
-                alt="Jaina's Learning Journal Logo"
-            >
-
-            <span>Jaina's Learning Journal</span>
-        </a>
-
-        <!-- NAVIGATION RIGHT SIDE -->
-        <div class="nav-menu">
-
-            <ul class="nav-links">
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-
-                <li>
-                    <a href="blog.html" class="active">Blog</a>
-                </li>
-            </ul>
-
-            <div class="nav-actions">
-
-                <!-- SEARCH BUTTON -->
-                <button
-                    type="button"
-                    class="nav-icon-button"
-                    id="navSearchButton"
-                    aria-label="Search journal entries"
-                    title="Search"
-                >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                            d="M10.8 4a6.8 6.8 0 1 0 4.25 12.1l4.42 4.42 1.41-1.41-4.42-4.42A6.8 6.8 0 0 0 10.8 4Zm0 2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Z"
-                        />
-                    </svg>
-                </button>
-
-                <button
-    type="button"
-    class="nav-icon-button theme-switch"
-    id="theme-switch"
-    aria-label="Switch to dark mode"
-    title="Switch to dark mode"
->
-    <img
-        src="images/dark-mode.svg"
-        alt=""
-        class="theme-icon moon-icon"
-        aria-hidden="true"
-    >
-
-    <img
-        src="images/light-mode.svg"
-        alt=""
-        class="theme-icon sun-icon"
-        aria-hidden="true"
-    >
-</button>
-
-                <!-- PROFILE BUTTON -->
-                <a href="myprofile.html" class="profile-button">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                            d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z"
-                        />
-                    </svg>
-
-                    <span>Profile</span>
-                </a>
-
-            </div>
-
-        </div>
-
-    </nav>
-</header>
-
-    <!-- ================= BLOG CONTENT ================= -->
-
-<main class="blog-main">
-
-    <!-- PAGE INTRODUCTION -->
-    <section class="blog-intro">
-
-        <div class="blog-intro-text">
-            <p class="blog-label">My Academic Journal</p>
-
-            <h1>My Learning Journal</h1>
-
-            <p class="blog-description">
-                Documenting my learning journey through class meetings,
-                activities, insights, and reflections throughout the semester.
-            </p>
-        </div>
-
-    
-
-    </section>
-
-    <!-- SEARCH, FILTERS, AND SORT -->
-    <section class="journal-toolbar">
-
-        <div class="search-box">
-
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                    d="M11 4a7 7 0 1 0 4.9 12l4.05 4.05 1.4-1.4-4.05-4.05A7 7 0 0 0 11 4Zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Z"
-                />
-            </svg>
-
-            <input
-                type="search"
-                id="searchInput"
-                placeholder="Search journal entries..."
-                autocomplete="off"
-                aria-label="Search journal entries"
-            >
-
-        </div>
-
-        <div
-            class="category-filters"
-            aria-label="Filter journal entries"
-        >
-            <button
-                type="button"
-                class="filter-button active"
-                data-category="all"
-            >
-                All
-            </button>
-
-            <button
-                type="button"
-                class="filter-button"
-                data-category="Technology"
-            >
-                Technology
-            </button>
-
-            <button
-                type="button"
-                class="filter-button"
-                data-category="Reflections"
-            >
-                Reflections
-            </button>
-
-            <button
-                type="button"
-                class="filter-button"
-                data-category="Study Notes"
-            >
-                Study Notes
-            </button>
-        </div>
-
-        <div class="sort-control">
-            <label for="sortSelect" class="visually-hidden">
-                Sort journal entries
-            </label>
-
-            <select id="sortSelect">
-                <option value="latest">Latest</option>
-                <option value="oldest">Oldest</option>
-                <option value="title">Title</option>
-            </select>
-        </div>
-
-    </section>
-    
-    <!-- FEATURED ARTICLE -->
-    <section class="featured-section">
-
-    <article class="featured-post">
-
-        <div class="featured-image">
-
-            <img
-                src="images/journal/secure-design.png"
-                alt="Secure Design Principles"
-            >
-
-            <span class="featured-badge">Featured</span>
-
-        </div>
-
-        <div class="featured-content">
-
-            <span class="post-category">
-                Cybersecurity
-            </span>
-
-            <h2>
-                When Fast Becomes Fragile: Rebuilding Student Apps with Secure Design Principles
-            </h2>
-
-            <p>
-                A technical reflection on how a student-built application exposed
-                sensitive information because security was overlooked. This article
-                examines the Secure Design Principles that were violated, the
-                immediate containment steps that should be taken, the long-term
-                improvements needed, and the responsibilities of developers under
-                RA No. 10173 (Data Privacy Act of 2012).
-            </p>
-
-            <div class="post-meta">
-                <span>August 6, 2026</span>
-                <span aria-hidden="true">•</span>
-                <span>12 min read</span>
-            </div>
-
- <a href="post.html?id=1" class="read-more-link">
-    Read Blog Post →
-</a>
-
-        </div>
-
-    </article>
-    <article class="featured-post blog-two-preview">
-
-    <div class="featured-image">
-
-        <img
-            src="images/journal/risk-assessment-fieldwork.png"
-            alt="Risk assessment fieldwork reflection"
-        >
-
-        <span class="featured-badge">
-            Blog Post 2
-        </span>
-
+    <div class="post-page-back">
+        <a href="blog.html">← Back to Blog</a>
     </div>
 
-    <div class="featured-content">
+    <main>
 
-        <span class="post-category">
-            Fieldwork Reflection
-        </span>
-
-        <h2>
-            Beyond the Classroom: What Our Risk Assessment Fieldwork Taught Us About Information Security
-        </h2>
-
-        <p>
-            Our risk assessment fieldwork transformed concepts such as
-            assets, threats, controls, likelihood, impact, and risk
-            treatment from classroom definitions into practical
-            organizational decisions.
-        </p>
-
-        <div class="post-meta">
-
-            <span>September 2026</span>
-
-            <span aria-hidden="true">•</span>
-
-            <span>8 min read</span>
-
-        </div>
-
-      <a href="post.html?id=2" class="read-more-link">
-    Read Blog Post →
-</a>
-
-    </div>
-
-</article>
-</section>
-
-    <!-- ================= JOURNAL MODAL ================= -->
-
-    <div
-        class="modal"
-        id="journalModal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modalTitle"
-    >
-
-        <div class="modal-content">
-
-            <div class="modal-heading">
-                <div>
-                    <p class="modal-label">Journal Entry</p>
-                    <h2 id="modalTitle">Add New Journal</h2>
-                </div>
-
-                <button
-                    type="button"
-                    id="modalClose"
-                    class="modal-close"
-                    aria-label="Close journal form"
-                >
-                    ×
-                </button>
-            </div>
-
-            <label for="title">Journal title</label>
-
-            <input
-                type="text"
-                id="title"
-                placeholder="Example: Introduction to Computing"
-            >
-
-            <div class="form-row">
-
-                <div class="form-group">
-                    <label for="week">Week</label>
-
-                    <input
-                        type="text"
-                        id="week"
-                        placeholder="Week 1"
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="date">Date</label>
-
-                    <input
-                        type="date"
-                        id="date"
-                    >
-                </div>
-
-            </div>
-
-            <div class="form-group journal-category-field">
-    <label for="category">Category</label>
-
-    <select id="category">
-        <option value="Technology">Technology</option>
-        <option value="Reflections">Reflections</option>
-        <option value="Study Notes">Study Notes</option>
-    </select>
-</div>
-
-<label for="image">Image path</label>
-
-<input
-    type="text"
-    id="image"
-    placeholder="images/journal/post4.png"
->
-
-            <label for="description">Reflection</label>
-
-            <textarea
-                id="description"
-                rows="6"
-                placeholder="Write what happened during the class meeting..."
-            ></textarea>
-
-            <div class="modal-buttons">
-
-                <button
-                    type="button"
-                    id="cancelBtn"
-                >
-                    Cancel
-                </button>
-
-                <button
-                    type="button"
-                    id="saveBtn"
-                >
-                    Save Journal
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- ================= FULL ARTICLE ================= -->
-
-<section id="secure-design-post" class="full-article hidden">
+<section id="secure-design-post" class="full-article">
 
     <div class="article-container">
 
@@ -540,6 +171,11 @@ Ultimately, shipping software quickly should never come at the expense of privac
 </p>
 
 </div>
+
+        </div>
+    </div>
+</section>
+
 <section id="risk-assessment-post" class="full-article">
 
     <div class="article-container">
@@ -866,10 +502,11 @@ Ultimately, shipping software quickly should never come at the expense of privac
                 <em>Understanding the challenge of cybersecurity in critical infrastructure sectors.</em>
                 Land Forces Academy Review, 26(1), 69-75.
                 https://reference-global.com/article/10.2478/raft-2021-0011
+            </p>
 
             <p class="reference-entry">
                 Pascoe, C., Quinn, S., & Scarfone, K. (2024). The NIST cybersecurity framework (CSF) 2.0.
-                https://www.nist.gov/publications/nist-cybersecurity-framework-csf-20?utm_source=pulse.latellu.com&utm_medium=editorial
+                https://www.nist.gov/publications/nist-cybersecurity-framework-csf-20
             </p>
 
         </div>
@@ -877,11 +514,35 @@ Ultimately, shipping software quickly should never come at the expense of privac
     </div>
 
 </section>
-    
 
-    <!-- JavaScript -->
-    <script src="js/script.js"></script>
-    <script src="js/blog.js"></script>
+        <section id="post-not-found">
+            <h1>Blog Post Not Found</h1>
+            <p>Please use <strong>post.html?id=1</strong> for Blog Post 1 or <strong>post.html?id=2</strong> for Blog Post 2.</p>
+            <p><a href="blog.html">Return to the Blog page</a></p>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const postId = params.get("id");
+
+            const blog1 = document.getElementById("secure-design-post");
+            const blog2 = document.getElementById("risk-assessment-post");
+            const notFound = document.getElementById("post-not-found");
+
+            if (postId === "1") {
+                blog1.style.display = "block";
+                document.title = "Blog Post 1 | Jaina's Learning Journal";
+            } else if (postId === "2") {
+                blog2.style.display = "block";
+                document.title = "Blog Post 2 | Jaina's Learning Journal";
+            } else {
+                notFound.style.display = "block";
+            }
+        });
+    </script>
 
 </body>
 </html>
