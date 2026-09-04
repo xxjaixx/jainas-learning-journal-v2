@@ -843,3 +843,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+/* ==========================================
+   BLOG POST 2 - CONTINUE READING
+========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const readBlogTwoBtn =
+        document.getElementById("readBlogTwoBtn");
+
+    const blogTwoArticle =
+        document.getElementById("risk-assessment-post");
+
+    if (readBlogTwoBtn && blogTwoArticle) {
+
+        readBlogTwoBtn.addEventListener("click", (event) => {
+
+            event.preventDefault();
+
+            blogTwoArticle.classList.remove("hidden");
+
+            blogTwoArticle.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        });
+
+    }
+
+});
