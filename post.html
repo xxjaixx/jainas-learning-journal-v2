@@ -22,10 +22,11 @@
         }
 
         #secure-design-post,
-        #risk-assessment-post {
-            display: none;
+        #risk-assessment-post,
+        #asset-audit-post,
+        #soc-pilot-post {
+        display: none;
         }
-
         #post-not-found {
             display: none;
             max-width: 900px;
@@ -61,148 +62,406 @@
 <h2>Introduction</h2>
 
 <p>
-The rapid growth of Artificial Intelligence (AI) has transformed how software is developed. Today, developers can build functional applications within hours by using AI coding assistants that generate large portions of source code. While this dramatically increases productivity, it also introduces a dangerous misconception that if an application works, it is automatically safe. The case of the student-built organization management platform demonstrates why security and privacy cannot be treated as optional features. Although the application successfully managed memberships, event payments, and file sharing, it failed to protect the personal information entrusted to it.
+    The Security Operations Center (SOC) has traditionally depended heavily
+    on human analysts to monitor security alerts, investigate suspicious
+    activity, and respond to cybersecurity incidents. However, the growing
+    number of alerts and the increasing complexity of cyber threats are
+    creating pressure for organizations to find faster and more scalable
+    ways to operate their SOCs. In his IBM article, Velisaris (2025)
+    presents an interesting vision of an autonomous SOC in which agentic
+    artificial intelligence can perform many routine cybersecurity tasks
+    while human analysts become more like "SOC pilots."
 </p>
 
 <p>
-Originally developed during a weekend hackathon, the platform was intended only as a prototype. However, its popularity quickly grew, and multiple student organizations adopted it for real operations. As a result, the application stored hundreds of sensitive records, including student names, student numbers, phone numbers, uploaded identification cards, GCash payment screenshots, and private conversations. Unfortunately, the developers never redesigned the prototype into production-quality software. Instead, the same AI-generated code remained in use despite handling highly sensitive information.
+    The comparison to a modern airliner is useful because pilots do not
+    manually control every part of the aircraft during normal operations.
+    Automated systems can handle many routine activities, while the pilot
+    remains responsible for monitoring the situation and taking control
+    when something unexpected happens. A similar approach could be applied
+    to cybersecurity. AI agents could monitor systems, analyze alerts, and
+    perform approved responses, while human analysts supervise the process
+    and handle situations that require deeper judgment.
 </p>
 
 <p>
-When one student discovered that simply changing the profile ID in the URL revealed another student's personal record, the seriousness of the problem became clear. Additional investigation revealed exposed database credentials in GitHub, unrestricted database permissions, detailed server error messages, and unencrypted HTTP communication. These weaknesses placed every user's privacy at risk and violated fundamental secure software development practices.
+    I believe the SOC pilot model is realistic, but only if organizations
+    treat it as a human-AI partnership rather than complete replacement of
+    human cybersecurity professionals. AI can provide speed and scale, but
+    cybersecurity decisions often depend on context, consequences, and
+    information that may not always be available to an AI system.
 </p>
 
-<h2>What Went Wrong?</h2>
+
+<h2>Can the SOC Pilot Model Really Work?</h2>
 
 <p>
-The primary failure was treating a hackathon prototype as production software. AI coding assistants are excellent tools for increasing development speed, but they generate code that prioritizes functionality rather than security. The developers accepted the generated code without performing proper security reviews, penetration testing, or code auditing.
-</p>
-
-<p>
-The application also relied on "security through obscurity." The team assumed that because users did not know the internal URL structure, nobody would attempt to modify URLs manually. This assumption proved false. Any user could simply change the profile number and immediately access another student's personal information because the application never verified ownership of the requested data.
-</p>
-
-<p>
-Equally concerning was the accidental exposure of database passwords and API keys inside a public GitHub repository. Once secrets become publicly available, attackers can connect directly to databases or abuse third-party services. Even if the credentials are later removed, Git history preserves earlier commits unless they are completely rewritten.
-</p>
-
-<h2>Secure Design Principles Violated</h2>
-
-<h3>1. Least Privilege</h3>
-
-<p>
-Every account had broad database read permissions. Instead of allowing users to access only their own information, the system granted excessive privileges. The Principle of Least Privilege requires every user, application, and service to operate with only the minimum permissions necessary to perform its task.
-</p>
-
-<h3>2. Fail Securely</h3>
-
-<p>
-When errors occurred, the application displayed complete stack traces to every visitor. Error messages should never reveal internal implementation details because they provide attackers with valuable information about application structure, database technologies, and server configuration.
-</p>
-
-<h3>3. Defense in Depth</h3>
-
-<p>
-The application depended on a single weak assumption that hidden URLs would remain undiscovered. Proper security requires multiple independent layers such as authentication, authorization, encrypted communication, input validation, monitoring, and logging. If one layer fails, additional protections should remain in place.
-</p>
-
-<h3>4. Secure by Default</h3>
-
-<p>
-The application used plain HTTP instead of HTTPS. Database credentials were stored directly inside source code, and debugging remained enabled in production. A secure application should always begin with safe default settings rather than expecting developers to manually enable security later.
-</p>
-
-<h3>5. Complete Mediation</h3>
-
-<p>
-Every request must be verified before access is granted. In this case, the application authenticated users during login but never checked whether they actually owned the profile they requested afterward. This allowed unauthorized viewing of sensitive information simply by modifying URLs.
-</p>
-
-<h2>Short-Term Containment (First Hours and Days)</h2>
-
-<p>
-The first action should be taking the application offline to prevent additional exposure while an investigation begins. Every compromised credential, including database passwords and payment API keys, must be revoked immediately and replaced with new secure credentials.
+    The idea of a SOC pilot is realistic because many SOC activities are
+    repetitive and follow recognizable patterns. Security teams receive
+    large numbers of alerts from firewalls, endpoint protection systems,
+    authentication systems, network monitoring tools, and other security
+    technologies. Analysts must determine which alerts are important and
+    which ones can be safely ignored or handled through routine procedures.
 </p>
 
 <p>
-Developers should remove secrets from GitHub history, force password resets for administrator accounts, enable HTTPS, disable debug mode, and implement proper authorization checks before restoring public access. A security assessment should also determine whether any unauthorized access occurred.
+    This is an area where AI can provide significant assistance. An AI agent
+    can continuously process large amounts of security information and
+    identify patterns that may be difficult for a human analyst to notice
+    immediately. It can also help organize alerts according to their
+    possible severity and relevance.
 </p>
 
 <p>
-Users whose personal information may have been exposed should receive immediate notification. Transparency helps maintain trust and allows affected individuals to take precautionary measures if necessary.
-</p>
-
-<h2>Long-Term Design Improvements</h2>
-
-<p>
-To prevent future incidents, security must become part of the development lifecycle rather than an afterthought. Authentication should use secure session management, while authorization must verify ownership for every request. Role-Based Access Control (RBAC) should limit permissions according to user responsibilities.
+    The benefit is not only speed. AI can operate continuously without
+    becoming tired or overwhelmed by the number of alerts. This could allow
+    security teams to spend more time investigating serious incidents
+    instead of manually processing every routine event.
 </p>
 
 <p>
-Sensitive information should always be encrypted during transmission using HTTPS and protected at rest using strong encryption methods. Secrets such as database passwords should never appear inside source code but instead be stored using environment variables or secure secret management services.
+    However, the SOC pilot model should not be understood as giving AI
+    unlimited control. A responsible implementation would require clear
+    boundaries regarding which actions an AI agent is allowed to perform.
+    Organizations should determine which actions are low-risk and
+    reversible and which actions require approval from a human analyst.
+</p>
+
+
+<h2>Where AI Can Safely Act on Its Own</h2>
+
+<p>
+    AI can safely perform certain cybersecurity activities when the task is
+    repetitive, clearly defined, and supported by reliable information.
+    One example is continuous monitoring. An AI system can examine security
+    events and identify unusual patterns without requiring a human analyst
+    to manually inspect every single event.
 </p>
 
 <p>
-Regular penetration testing, automated vulnerability scanning, dependency updates, and code reviews should become standard development practices. Logging and monitoring should detect suspicious activities before they become serious incidents.
-</p>
-
-<h2>Developer Responsibilities Under RA No. 10173</h2>
-
-<p>
-The Philippine Data Privacy Act of 2012 (RA No. 10173) requires organizations and developers to protect personal information through appropriate organizational, physical, and technical security measures. Student numbers, phone numbers, identification cards, payment screenshots, and private messages all qualify as personal information that deserves protection.
-</p>
-
-<p>
-As developers, we have an ethical and legal responsibility to design systems that respect user privacy from the very beginning. Ignoring secure design principles may expose users to identity theft, financial fraud, reputational damage, and unauthorized surveillance. Compliance with RA No. 10173 means implementing privacy by design, limiting data collection, protecting stored information, and responding responsibly when security incidents occur.
-</p>
-
-<h2>Reflection</h2>
-
-<p>
-This case clearly demonstrates that software development is not only about delivering features quickly but also about protecting the people who trust us with their information. AI coding assistants are powerful tools that can dramatically reduce development time, but they cannot replace professional judgment, security testing, and responsible engineering practices.
+    AI can also assist with alert triage. When hundreds or thousands of
+    alerts are generated, an AI agent can help determine which events
+    deserve immediate attention. This can reduce the workload of analysts
+    and allow them to concentrate on the alerts that are more likely to
+    represent real threats.
 </p>
 
 <p>
-If I were rebuilding this application, I would integrate security into every phase of development instead of adding it after deployment. Every design decision—from authentication and authorization to encryption and secret management—would prioritize user safety. Secure Design Principles such as Least Privilege, Defense in Depth, Complete Mediation, Fail Securely, and Secure by Default would guide every implementation decision.
+    Another area where AI may safely operate is the execution of predefined
+    and approved response procedures. For example, an organization may
+    establish rules for handling a known type of suspicious activity. If an
+    event clearly matches those conditions, an AI agent could potentially
+    perform a limited response according to the organization's approved
+    procedures.
 </p>
 
 <p>
-Ultimately, shipping software quickly should never come at the expense of privacy and security. The trust users place in developers is far more valuable than winning a hackathon or releasing an application ahead of schedule. As future IT professionals, we must ensure that every system we build respects both the people who use it and the legal responsibilities established by RA No. 10173.
+    These examples show that automation is most appropriate when the
+    organization understands the task and has established clear limits.
+    The AI should not simply decide that it can perform any action it wants.
+    Its authority should be based on security policies, predefined
+    procedures, and appropriate safeguards.
 </p>
 
-</div>
 
-        </div>
+<h2>Why Context Matters</h2>
+
+<p>
+    One of the most important ideas in the SOC pilot model is that detecting
+    an alert is not the same as understanding the alert. An AI agent may
+    recognize suspicious activity, but it still needs context before it can
+    determine the appropriate response.
+</p>
+
+<p>
+    For example, imagine that an AI agent detects unusual activity from a
+    device. The same technical alert could have very different consequences
+    depending on what that device actually is. If it is an ordinary
+    workstation, isolating it may have a limited effect on the organization.
+    If it is a critical server supporting an important business service,
+    however, automatically isolating it could cause a much more serious
+    disruption.
+</p>
+
+<p>
+    This is why asset information is extremely important. The AI needs to
+    understand what systems exist, how important they are, who uses them,
+    and what their normal activities look like. Without this context, an
+    AI agent may technically identify the correct event but still choose
+    the wrong response.
+</p>
+
+<p>
+    The NIST Cybersecurity Framework 2.0 emphasizes the importance of
+    managing cybersecurity risks across organizational activities and
+    understanding the systems and risks that need to be protected
+    (National Institute of Standards and Technology, 2024). This supports
+    the idea that effective automation requires more than simply detecting
+    threats. It also requires reliable organizational and security context.
+</p>
+
+
+<h2>What Happens When Asset Information Is Wrong?</h2>
+
+<p>
+    Incomplete or incorrect asset information can become one of the biggest
+    weaknesses in an autonomous SOC. If an AI agent depends on asset
+    information to decide how serious an alert is, incorrect information
+    can lead to an incorrect decision.
+</p>
+
+<p>
+    For example, suppose a critical server is incorrectly recorded as an
+    ordinary workstation. An AI agent may not understand that the system is
+    essential to the organization. It could therefore assign the alert a
+    lower priority than it deserves or apply a response that is not
+    appropriate for such an important system.
+</p>
+
+<p>
+    The opposite problem is also possible. An ordinary workstation could be
+    incorrectly classified as a critical system. The AI might then
+    prioritize relatively minor activity and consume valuable security
+    resources investigating something that does not require immediate
+    attention.
+</p>
+
+<p>
+    The problem becomes more serious when the AI is allowed to take
+    automatic action. Incorrect information could cause the system to block
+    a legitimate user, isolate an important device, or interrupt a service
+    that should remain available.
+</p>
+
+<p>
+    This demonstrates an important limitation of autonomous security
+    systems: automation does not automatically correct bad information.
+    Instead, automation can make decisions faster based on the information
+    it receives. If that information is incomplete or wrong, the system may
+    also make a wrong decision faster.
+</p>
+
+<p>
+    Because of this, organizations need processes for maintaining and
+    validating asset information. AI should not be expected to compensate
+    for inaccurate information about the environment it is protecting.
+</p>
+
+
+<h2>Where Human Judgment Must Remain</h2>
+
+<p>
+    Even if AI becomes highly capable, there are situations where human
+    judgment should remain essential. Major cybersecurity incidents are one
+    example. If an incident could affect a critical system, important
+    business operations, or a large number of users, the consequences of an
+    incorrect automated response could be significant.
+</p>
+
+<p>
+    Human analysts should also remain involved when the available evidence
+    is incomplete or contradictory. AI can analyze information quickly, but
+    cybersecurity decisions sometimes require understanding the wider
+    organizational situation. A human may know that a particular activity
+    is related to approved maintenance, a business process, or an unusual
+    but legitimate situation.
+</p>
+
+<p>
+    Human oversight is also important because cybersecurity decisions can
+    involve accountability. If an automated action causes a major
+    disruption, an organization needs to know who was responsible for
+    establishing the rules and approving the level of authority given to
+    the AI system.
+</p>
+
+<p>
+    The NIST Artificial Intelligence Risk Management Framework emphasizes
+    managing risks associated with AI systems and promoting trustworthy and
+    responsible AI practices (National Institute of Standards and
+    Technology, 2023). This supports the need for organizations to consider
+    not only what an AI system can do, but also whether its use is
+    reliable, secure, and appropriately governed.
+</p>
+
+<p>
+    For this reason, I do not think the best SOC model is "AI versus
+    humans." A better model is AI working with humans. AI can handle speed,
+    scale, and repetitive work, while human analysts remain responsible for
+    difficult decisions and situations where the consequences are
+    significant.
+</p>
+
+
+<h2>What Skills Would I Need to Become a SOC Pilot?</h2>
+
+<p>
+    If AI becomes more involved in SOC operations, cybersecurity
+    professionals will still be needed. However, their responsibilities
+    may change. Instead of spending most of their time manually reviewing
+    every alert, analysts may spend more time supervising AI systems,
+    validating their decisions, and handling situations that require human
+    judgment.
+</p>
+
+<p>
+    The first skill I would need is a strong foundation in cybersecurity. I
+    would need to understand networks, authentication, access control,
+    security monitoring, common attack techniques, and incident response.
+    Without this knowledge, it would be difficult to determine whether an
+    AI-generated recommendation is reasonable.
+</p>
+
+<p>
+    I would also need AI literacy. A SOC pilot should understand the
+    capabilities and limitations of AI systems. This includes knowing that
+    an AI recommendation is not automatically correct simply because it was
+    generated quickly or based on a large amount of data.
+</p>
+
+<p>
+    Critical thinking would be another important skill. A SOC pilot should
+    be able to question an AI decision and ask whether the evidence
+    actually supports the recommended action. If an AI wants to isolate a
+    device, for example, the analyst should be able to determine whether
+    the device is truly compromised and whether isolating it could affect
+    important operations.
+</p>
+
+<p>
+    Communication skills would also remain important. During a major
+    cybersecurity incident, the SOC pilot may need to explain the situation
+    to managers, system administrators, and other teams. The ability to
+    communicate technical information clearly would therefore remain
+    valuable even in a highly automated SOC.
+</p>
+
+<p>
+    Finally, I would need to develop the ability to work with automation
+    rather than compete against it. Instead of thinking that AI will
+    replace every cybersecurity professional, I would focus on becoming the
+    person who knows how to supervise, question, and improve AI-assisted
+    security operations.
+</p>
+
+
+<h2>Conclusion</h2>
+
+<p>
+    The SOC pilot model is realistic, but I believe it is responsible only
+    when automation is introduced with clear boundaries and human
+    oversight. AI can provide major benefits by monitoring systems,
+    analyzing large amounts of security information, prioritizing alerts,
+    and performing approved routine actions.
+</p>
+
+<p>
+    However, AI cannot make responsible decisions without reliable context.
+    If asset information is incomplete or incorrect, the AI may
+    misunderstand the importance of a system and respond inappropriately.
+    This is especially dangerous when automated actions could interrupt
+    critical services or affect legitimate users.
+</p>
+
+<p>
+    Human analysts therefore still have an important role. Their role may
+    change from manually handling every alert to supervising AI, validating
+    important decisions, responding to unusual situations, and taking
+    responsibility for high-impact actions.
+</p>
+
+<p>
+    For me, becoming a SOC pilot would mean developing both technical and
+    human skills. I would need cybersecurity knowledge, AI literacy,
+    critical thinking, incident response skills, and strong communication.
+    The goal would not be to compete with AI but to understand how to use it
+    responsibly.
+</p>
+
+<p>
+    AI may eventually take the wheel for many routine parts of security
+    operations, but humans should still know where the organization is
+    going, what could go wrong, and when it is necessary to take control.
+    That is what makes the SOC pilot model not only realistic, but
+    potentially responsible.
+</p>
+
+
+<h2>References</h2>
+
+<p class="reference-entry">
+    National Institute of Standards and Technology. (2023).
+    <em>Artificial intelligence risk management framework (AI RMF 1.0).</em>
+    U.S. Department of Commerce.
+    <a
+        href="https://doi.org/10.6028/NIST.AI.100-1"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        https://doi.org/10.6028/NIST.AI.100-1
+    </a>
+</p>
+
+<p class="reference-entry">
+    National Institute of Standards and Technology. (2024).
+    <em>The NIST Cybersecurity Framework (CSF) 2.0</em>
+    (NIST Cybersecurity White Paper No. 29).
+    U.S. Department of Commerce.
+    <a
+        href="https://doi.org/10.6028/NIST.CSWP.29"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        https://doi.org/10.6028/NIST.CSWP.29
+    </a>
+</p>
+
+<p class="reference-entry">
+    Velisaris, J. (2025).
+    <em>How agentic AI enables an autonomous SOC with minimal human involvement.</em>
+    IBM.
+    <a
+        href="https://www.ibm.com/think/insights/agentic-ai-enables-autonomous-soc"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        https://www.ibm.com/think/insights/agentic-ai-enables-autonomous-soc
+    </a>
+</p>
     </div>
+    </div>
+
 </section>
 
-<section id="risk-assessment-post" class="full-article">
+<!-- BLOG POST 3 -->
+<section id="asset-audit-post" class="full-article">
 
     <div class="article-container">
 
         <div class="article-header">
 
             <span class="post-category">
-                Fieldwork Reflection
+                Audit Reflection
             </span>
 
             <h1>
-                Beyond the Classroom: What Our Risk Assessment Fieldwork Taught Us About Information Security
+                Looking Through an Auditor’s Eyes:
+                Revisiting Our Risk Assessment Form
             </h1>
 
             <div class="post-meta">
-                <span>September 2026</span>
+                <span>October 2026</span>
                 <span aria-hidden="true">•</span>
-                <span>Blog Post 2</span>
+                <span>Blog Post 3</span>
                 <span aria-hidden="true">•</span>
-                <span>8 min read</span>
+                <span>10 min read</span>
             </div>
 
         </div>
 
         <img
-            src="images/journal/risk-assessment-fieldwork.png"
-            alt="Risk assessment fieldwork reflection showing information security concepts"
+            src="images/journal/risk-audit-fieldwork.png"
+            alt="Risk assessment and information security audit workspace"
             class="article-hero-image"
         >
 
@@ -211,302 +470,667 @@ Ultimately, shipping software quickly should never come at the expense of privac
             <h2>Introduction</h2>
 
             <p>
-                When we first studied risk assessment in our Information
-                Assurance and Security class, most of the concepts seemed
-                straightforward. We learned about assets, threats,
-                vulnerabilities, likelihood, impact, existing controls,
-                and risk treatment. We understood how these concepts worked
-                in classroom examples, but conducting an actual risk assessment
-                showed us that information security is more complicated—and
-                more practical—than simply identifying what could go wrong.
+                Revisiting our group's Risk Assessment Form through an
+                auditor's perspective helped us understand that risk
+                assessment is not only about identifying threats and
+                assigning risk scores. It is also about determining what
+                assets are important, who is responsible for them, what
+                evidence exists, and whether the controls in place are
+                actually working.
             </p>
 
             <p>
-                For our fieldwork, our group interviewed an authorized
-                representative from a private-sector organization. Our
-                objective was to understand some of the information security
-                risks that can occur in a real working environment, examine
-                the security measures already being practiced, and determine
-                what treatments could help manage the risks we identified.
+                Looking at our previous work from an auditor's perspective
+                allowed us to evaluate our assessment more critically.
+                Instead of simply asking what risks were present, we had to
+                ask whether the information we recorded could be supported
+                by evidence and whether the organization could clearly
+                demonstrate how its assets were protected.
             </p>
 
             <p>
-                To protect the confidentiality of the organization and its
-                personnel, this reflection discusses our observations only
-                in general terms. No employee names, internal configurations,
-                credentials, or specific vulnerabilities are disclosed.
+                To protect the confidentiality of the organization involved
+                in our fieldwork, this reflection discusses our observations
+                only in general terms. No employee names, credentials,
+                internal configurations, or specific vulnerabilities are
+                disclosed.
             </p>
 
-            <h2>Security Is Also About Keeping the Work Going</h2>
+            <h2>Understanding the Organization’s Most Important Assets</h2>
 
             <p>
-                One of the first things we learned during the interview was
-                how dependent everyday work has become on technology.
-                Employees use laptops and other equipment as part of their
-                daily responsibilities, and technical problems can interrupt
-                normal operations.
-            </p>
-
-            <p>
-                When equipment or systems become unavailable, the impact can
-                go beyond a single malfunctioning device. It can delay repair,
-                installation, activation, and other work processes. This helped
-                us understand the importance of availability as one of the
-                fundamental principles of information security.
+                From an auditor's perspective, the first question should be:
+                what assets are important to the organization? Assets are not
+                limited to computers and physical equipment. They can include
+                information, applications, network resources, records,
+                facilities, and other resources that support business
+                operations.
             </p>
 
             <p>
-                Before the fieldwork, we often associated information security
-                with hacking, malware, or stolen data. The interview helped us
-                realize that equipment failure and system downtime can also
-                become information security concerns because they affect an
-                organization's ability to access and use its resources when
-                needed.
-            </p>
-
-            <h2>Risk Assessment Requires Context</h2>
-
-            <p>
-                Another lesson from the activity was that identifying a threat
-                is only the beginning. Our group had to consider the asset
-                involved, the possible threat or hazard, the controls already
-                in place, the probability of occurrence, and the potential
-                impact.
+                During our risk assessment, we realized that some assets are
+                directly connected to the organization's ability to continue
+                its daily operations. Devices such as laptops and other
+                equipment can support employees in completing their work.
+                Information and records can also be important because their
+                loss, alteration, or unauthorized disclosure may affect the
+                organization.
             </p>
 
             <p>
-                This process showed us that risk assessment cannot simply be a
-                checklist of everything that might go wrong. Different risks
-                have different consequences and likelihoods.
+                An auditor would therefore look beyond simply listing assets.
+                The assessment should explain why each asset matters, what
+                processes depend on it, and what could happen if it becomes
+                unavailable, damaged, altered, or accessed without
+                authorization.
+            </p>
+
+            <h2>Classifying Assets According to Their Importance</h2>
+
+            <p>
+                Not every asset has the same level of importance. An asset
+                inventory becomes more useful when assets are classified
+                according to their value and the consequences associated with
+                their compromise.
             </p>
 
             <p>
-                Equipment failure, for example, may mainly affect availability
-                and operational continuity, while a phishing attempt can
-                threaten information, user credentials, or access to systems.
+                For example, some assets may be primarily important for
+                availability because employees depend on them to continue
+                their work. Other assets may require stronger confidentiality
+                protections because they contain sensitive information.
+                Some assets may require protection of both confidentiality
+                and integrity because unauthorized changes could affect
+                business decisions or operations.
             </p>
 
             <p>
-                By examining both likelihood and impact, we were able to reason
-                more carefully about which risks required greater attention.
-                This helped us understand why risk matrices are useful. They
-                are not simply tables that need to be completed for an
-                assignment; they help support decisions about priorities and
-                appropriate treatments.
+                From an auditor's perspective, classification helps determine
+                whether the security controls applied to an asset are
+                appropriate for its importance. Higher-value or higher-risk
+                assets may require stronger controls, closer monitoring, and
+                more frequent review.
             </p>
 
-            <h2>Existing Controls Matter</h2>
+            <h2>Establishing Clear Asset Ownership and Responsibility</h2>
 
             <p>
-                One of the most valuable lessons from our interview was that
-                a risk assessment should not assume that an organization has
-                no security protections. Before recommending additional
-                controls, we first needed to understand what measures were
-                already in place.
-            </p>
-
-            <p>
-                Based on the information shared with us, security measures were
-                already being used to protect network connections. Access to
-                certain IT-related systems and resources was limited to
-                appropriate personnel, and there was also a designated
-                cybersecurity team responsible for handling security concerns.
+                Another important area an auditor would examine is asset
+                ownership. Every important asset should have a responsible
+                owner or department that understands its purpose, value,
+                risks, and security requirements.
             </p>
 
             <p>
-                These practices influenced our evaluation because existing
-                controls can reduce either the likelihood or the impact of a
-                risk. A threat may still exist, but the presence of effective
-                controls changes the organization's overall exposure.
+                Without clear ownership, it becomes difficult to determine who
+                should maintain an asset, review its access permissions,
+                approve changes, or respond when something goes wrong.
+                Responsibility can easily become unclear when an asset is
+                shared by multiple people or departments.
             </p>
 
             <p>
-                This also reinforced the principle of access control. Not every
-                employee needs access to every resource. Restricting access
-                according to roles and responsibilities reduces unnecessary
-                exposure and supports the confidentiality and integrity of
-                organizational systems.
+                An asset inventory should therefore include information about
+                the responsible owner or custodian. This creates
+                accountability and makes it easier for the organization to
+                manage security requirements throughout an asset's lifecycle.
             </p>
 
-            <h2>Phishing Showed Us the Human Side of Security</h2>
+            <h2>What Evidence Would an Auditor Require?</h2>
 
             <p>
-                One of the clearest examples from our interview involved
-                suspicious and phishing emails. Employees explained that they
-                avoid interacting with questionable messages and instead
-                report or submit them to the appropriate cybersecurity
-                personnel.
-            </p>
-
-            <p>
-                They also pay attention to warning signs. For example, a
-                message may appear to represent a familiar organization while
-                being identified by the email system as coming from an
-                external sender. That difference can signal that the message
-                deserves additional caution.
+                One of the biggest differences between completing a classroom
+                risk assessment and thinking like an auditor is the
+                importance of evidence. An auditor cannot rely only on verbal
+                statements that a control exists.
             </p>
 
             <p>
-                This experience helped us understand that employees are not
-                merely possible targets of cyberattacks. They can also become
-                an active part of an organization's defense.
+                For asset management, an auditor could examine an updated
+                asset inventory showing the organization's assets, owners,
+                classifications, and status. For access control, an auditor
+                could review access lists, user accounts, or authorization
+                records.
             </p>
 
             <p>
-                An employee who recognizes something unusual, avoids clicking
-                a suspicious link, and reports the message can prevent a
-                potential threat from developing into a larger incident.
+                For backup controls, an auditor could request backup logs and
+                evidence that restoration tests have been performed. For
+                physical security, an auditor could observe whether restricted
+                areas are actually protected.
             </p>
 
             <p>
-                The Cybersecurity and Infrastructure Security Agency also
-                emphasizes the importance of recognizing and reporting
-                suspicious phishing messages rather than interacting with
-                potentially harmful links or attachments
-                (Cybersecurity and Infrastructure Security Agency, 2024).
+                This taught us that strong audit evidence should be specific,
+                relevant, reliable, and verifiable. Actual records, logs,
+                documents, observations, and test results provide stronger
+                support than statements alone.
             </p>
 
-            <h2>Choosing the Right Risk Treatment</h2>
+            <h2>Gaps an Auditor Might Uncover</h2>
 
             <p>
-                After identifying and evaluating risks, our next challenge was
-                deciding what should be done about them. This is where the
-                concept of risk treatment became much more practical.
-            </p>
-
-            <p>
-                For equipment-related risks, possible treatments include
-                preventive maintenance, timely replacement of failing
-                components, software updates, technical support procedures,
-                and appropriate preparation for restoring operations after a
-                failure.
+                Looking at our Risk Assessment Form from an auditor's
+                perspective also made us realize that an organization may
+                have controls but still have gaps in documentation,
+                accountability, or monitoring.
             </p>
 
             <p>
-                For phishing-related risks, treatment may involve continued
-                employee awareness, clear reporting procedures, technical
-                email protections, and reinforcing the practice of not
-                opening suspicious links or attachments.
+                One possible gap is an incomplete asset inventory. If some
+                assets are missing from the inventory, the organization may
+                not know what needs protection or who is responsible for it.
             </p>
 
             <p>
-                The important point is that the treatment should match the
-                level and nature of the risk. Not every minor issue requires
-                an expensive security solution. At the same time, a
-                significant risk should not simply be accepted if reasonable
-                controls can reduce its likelihood or impact.
-            </p>
-
-            <h2>A Control Does Not Mean the Risk Is Gone</h2>
-
-            <p>
-                Another important realization from our fieldwork was that
-                implementing a security control does not eliminate every risk.
-                A VPN does not make all network risks disappear. Access
-                restrictions do not make unauthorized access impossible.
+                Another possible gap is outdated ownership information.
+                Employees may change roles, equipment may be transferred,
+                and systems may be replaced. If the inventory is not regularly
+                updated, the documented information may no longer represent
+                the actual environment.
             </p>
 
             <p>
-                Security awareness does not guarantee that phishing will
-                never succeed, and equipment maintenance cannot guarantee
-                that a device will never fail.
+                An auditor may also identify weaknesses when controls are
+                documented but there is insufficient evidence showing that
+                they are consistently performed. This demonstrates why
+                documentation and evidence are important parts of effective
+                security management.
+            </p>
+
+            <h2>Strengthening Risk Treatments Through an Asset Inventory and Audit Checklist</h2>
+
+            <p>
+                An accurate asset inventory can strengthen risk treatment
+                because it gives the organization a clearer understanding of
+                what needs protection. Instead of applying the same treatment
+                to every asset, security measures can be prioritized based
+                on asset value, classification, ownership, and risk.
             </p>
 
             <p>
-                Some level of residual risk usually remains. Because of this,
-                organizations must review the effectiveness of their controls
-                and determine whether the remaining risk is acceptable.
+                An audit checklist can further strengthen this process by
+                connecting a control requirement with an audit question,
+                expected evidence, and the resulting finding.
             </p>
 
             <p>
-                The NIST Cybersecurity Framework 2.0 emphasizes continuous
-                cybersecurity risk management through functions such as
-                Govern, Identify, Protect, Detect, Respond, and Recover
-                (Pascoe, Quinn, &amp; Scarfone, 2024).
-            </p>
-
-            <h2>Confidentiality Became Part of the Lesson</h2>
-
-            <p>
-                Our fieldwork also taught us that the assessment process itself
-                must be conducted responsibly.
+                For example, an asset management audit question could ask:
+                "Does every important asset have an assigned owner?" The
+                expected evidence could be the organization's asset inventory.
+                For access control, the question could ask whether only
+                authorized personnel can access sensitive resources, with
+                access lists serving as evidence.
             </p>
 
             <p>
-                We were given an opportunity to learn about an organization's
-                working environment, but that did not give us permission to
-                publicly disclose everything we observed.
+                This approach makes the audit process more organized and
+                helps ensure that recommendations are based on observable
+                evidence rather than assumptions.
             </p>
 
             <p>
-                Discussing general risk categories is appropriate for our
-                academic reflection, but publishing names, credentials,
-                internal configurations, or specific technical weaknesses
-                could create a new security risk.
+                The NIST Cybersecurity Framework 2.0 emphasizes understanding
+                and managing cybersecurity risks through activities such as
+                Govern, Identify, Protect, Detect, Respond, and Recover.
+                Similarly, security controls and audit activities help
+                organizations determine whether their protections are
+                appropriate and effective.
+            </p>
+
+            <h2>Conclusion</h2>
+
+            <p>
+                Revisiting our Risk Assessment Form through an auditor's
+                perspective gave us a deeper understanding of information
+                security. We learned that identifying risks is only one part
+                of the process. Organizations must also know what assets they
+                have, how those assets should be classified, who is
+                responsible for them, and what evidence can demonstrate that
+                security controls are working.
             </p>
 
             <p>
-                In that sense, confidentiality was not only a concept from
-                the CIA triad. It became something we had to practice during
-                the assessment itself.
-            </p>
-
-            <h2>Final Reflection</h2>
-
-            <p>
-                Overall, our risk assessment fieldwork changed the way we
-                understand information security. Security is not only about
-                preventing cyberattacks. It is also about keeping systems
-                available, limiting access appropriately, maintaining
-                equipment, recognizing suspicious activity, reporting
-                incidents, and preparing for disruptions.
+                An asset inventory provides visibility and accountability,
+                while an audit checklist provides a structured way to verify
+                controls and collect evidence. Together, they can help
+                organizations identify gaps and improve their risk treatments.
             </p>
 
             <p>
-                The experience also showed us how the concepts from our module
-                connect with one another. Assets have value. Threats and
-                vulnerabilities create risk. Likelihood and impact help us
-                evaluate that risk. Existing controls influence the level of
-                exposure, and risk treatment helps determine what should be
-                done next.
+                Most importantly, this activity showed us that auditing is not
+                simply about finding mistakes. It is about understanding
+                whether the organization's security practices are appropriate,
+                supported by evidence, and capable of reducing risk.
+            </p>
+
+            <h2>References</h2>
+
+<p class="reference-entry">
+    Edwards, J. (2024).
+    <em>Critical security controls for effective cyber defense:
+    A comprehensive guide to CIS 18 controls.</em>
+    Apress.
+    <a
+        href="https://link.springer.com/book/10.1007/979-8-8688-0506-6"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        https://link.springer.com/book/10.1007/979-8-8688-0506-6
+    </a>
+</p>
+
+<p class="reference-entry">
+    Parmar, M., &amp; Miles, A. (2024, May).
+    <em>Cyber security frameworks (CSFs): An assessment between the NIST CSF v2.0 and EU standards.</em>
+    In <em>2024 Security for Space Systems (3S)</em> (pp. 1–7). IEEE.
+    <a
+        href="https://ieeexplore.ieee.org/abstract/document/10592293"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        https://ieeexplore.ieee.org/abstract/document/10592293
+    </a>
+</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= BLOG POST 4 ================= -->
+
+<section id="soc-pilot-post" class="full-article">
+
+    <div class="article-container">
+
+        <div class="article-header">
+
+            <span class="post-category">Cybersecurity & AI</span>
+
+            <h1>
+                The SOC Pilot: Can AI Really Take the Wheel?
+            </h1>
+
+            <div class="post-meta">
+                <span>October 2026</span>
+                <span aria-hidden="true">•</span>
+                <span>Blog Post 4</span>
+                <span aria-hidden="true">•</span>
+                <span>10 min read</span>
+            </div>
+
+        </div>
+
+        <img
+            src="images/journal/soc-pilot-ai.png"
+            alt="Security operations center using artificial intelligence"
+            class="article-hero-image"
+        >
+
+               <div class="article-content">
+
+            <h2>Introduction</h2>
+
+            <p>
+                The Security Operations Center (SOC) has traditionally depended heavily
+                on human analysts to monitor security alerts, investigate suspicious
+                activity, and respond to cybersecurity incidents. However, the growing
+                number of alerts and the increasing complexity of cyber threats are
+                creating pressure for organizations to find faster and more scalable
+                ways to operate their SOCs. In his IBM article, Velisaris (2025)
+                presents an interesting vision of an autonomous SOC in which agentic
+                artificial intelligence can perform many routine cybersecurity tasks
+                while human analysts become more like "SOC pilots."
             </p>
 
             <p>
-                Most importantly, we learned that information security depends
-                on people, processes, and technology working together. A VPN,
-                access restrictions, employee awareness, reporting procedures,
-                technical support, and recovery processes each address
-                different parts of the overall risk.
+                The comparison to a modern airliner is useful because pilots do not
+                manually control every part of the aircraft during normal operations.
+                Automated systems can handle many routine activities, while the pilot
+                remains responsible for monitoring the situation and taking control
+                when something unexpected happens. A similar approach could be applied
+                to cybersecurity. AI agents could monitor systems, analyze alerts, and
+                perform approved responses, while human analysts supervise the process
+                and handle situations that require deeper judgment.
             </p>
 
             <p>
-                Before conducting the fieldwork, a risk assessment looked to us
-                like a table containing scores and categories. After the
-                experience, we understood that each score represents something
-                more meaningful: a process that could be delayed, information
-                that needs protection, a system that employees depend on, or
-                a service that must remain available.
+                I believe the SOC pilot model is realistic, but only if organizations
+                treat it as a human-AI partnership rather than complete replacement of
+                human cybersecurity professionals. AI can provide speed and scale, but
+                cybersecurity decisions often depend on context, consequences, and
+                information that may not always be available to an AI system.
+            </p>
+
+            <h2>Can the SOC Pilot Model Really Work?</h2>
+
+            <p>
+                The idea of a SOC pilot is realistic because many SOC activities are
+                repetitive and follow recognizable patterns. Security teams receive
+                large numbers of alerts from firewalls, endpoint protection systems,
+                authentication systems, network monitoring tools, and other security
+                technologies. Analysts must determine which alerts are important and
+                which ones can be safely ignored or handled through routine procedures.
             </p>
 
             <p>
-                Ultimately, risk assessment is not about creating a world where
-                nothing ever goes wrong. It is about understanding what matters,
-                identifying what could affect it, applying reasonable controls,
-                and being prepared to respond when problems still occur.
+                This is an area where AI can provide significant assistance. An AI agent
+                can continuously process large amounts of security information and
+                identify patterns that may be difficult for a human analyst to notice
+                immediately. It can also help organize alerts according to their
+                possible severity and relevance.
+            </p>
+
+            <p>
+                The benefit is not only speed. AI can operate continuously without
+                becoming tired or overwhelmed by the number of alerts. This could allow
+                security teams to spend more time investigating serious incidents
+                instead of manually processing every routine event.
+            </p>
+
+            <p>
+                However, the SOC pilot model should not be understood as giving AI
+                unlimited control. A responsible implementation would require clear
+                boundaries regarding which actions an AI agent is allowed to perform.
+                Organizations should determine which actions are low-risk and
+                reversible and which actions require approval from a human analyst.
+            </p>
+
+            <h2>Where AI Can Safely Act on Its Own</h2>
+
+            <p>
+                AI can safely perform certain cybersecurity activities when the task is
+                repetitive, clearly defined, and supported by reliable information.
+                One example is continuous monitoring. An AI system can examine security
+                events and identify unusual patterns without requiring a human analyst
+                to manually inspect every single event.
+            </p>
+
+            <p>
+                AI can also assist with alert triage. When hundreds or thousands of
+                alerts are generated, an AI agent can help determine which events
+                deserve immediate attention. This can reduce the workload of analysts
+                and allow them to concentrate on the alerts that are more likely to
+                represent real threats.
+            </p>
+
+            <p>
+                Another area where AI may safely operate is the execution of predefined
+                and approved response procedures. For example, an organization may
+                establish rules for handling a known type of suspicious activity. If an
+                event clearly matches those conditions, an AI agent could potentially
+                perform a limited response according to the organization's approved
+                procedures.
+            </p>
+
+            <p>
+                These examples show that automation is most appropriate when the
+                organization understands the task and has established clear limits.
+                The AI should not simply decide that it can perform any action it wants.
+                Its authority should be based on security policies, predefined
+                procedures, and appropriate safeguards.
+            </p>
+
+            <h2>Why Context Matters</h2>
+
+            <p>
+                One of the most important ideas in the SOC pilot model is that detecting
+                an alert is not the same as understanding the alert. An AI agent may
+                recognize suspicious activity, but it still needs context before it can
+                determine the appropriate response.
+            </p>
+
+            <p>
+                For example, imagine that an AI agent detects unusual activity from a
+                device. The same technical alert could have very different consequences
+                depending on what that device actually is. If it is an ordinary
+                workstation, isolating it may have a limited effect on the organization.
+                If it is a critical server supporting an important business service,
+                however, automatically isolating it could cause a much more serious
+                disruption.
+            </p>
+
+            <p>
+                This is why asset information is extremely important. The AI needs to
+                understand what systems exist, how important they are, who uses them,
+                and what their normal activities look like. Without this context, an
+                AI agent may technically identify the correct event but still choose
+                the wrong response.
+            </p>
+
+            <p>
+                The NIST Cybersecurity Framework 2.0 emphasizes the importance of
+                managing cybersecurity risks across organizational activities and
+                understanding the systems and risks that need to be protected
+                (National Institute of Standards and Technology, 2024). This supports
+                the idea that effective automation requires more than simply detecting
+                threats. It also requires reliable organizational and security context.
+            </p>
+
+            <h2>What Happens When Asset Information Is Wrong?</h2>
+
+            <p>
+                Incomplete or incorrect asset information can become one of the biggest
+                weaknesses in an autonomous SOC. If an AI agent depends on asset
+                information to decide how serious an alert is, incorrect information
+                can lead to an incorrect decision.
+            </p>
+
+            <p>
+                For example, suppose a critical server is incorrectly recorded as an
+                ordinary workstation. An AI agent may not understand that the system is
+                essential to the organization. It could therefore assign the alert a
+                lower priority than it deserves or apply a response that is not
+                appropriate for such an important system.
+            </p>
+
+            <p>
+                The opposite problem is also possible. An ordinary workstation could be
+                incorrectly classified as a critical system. The AI might then
+                prioritize relatively minor activity and consume valuable security
+                resources investigating something that does not require immediate
+                attention.
+            </p>
+
+            <p>
+                The problem becomes more serious when the AI is allowed to take
+                automatic action. Incorrect information could cause the system to block
+                a legitimate user, isolate an important device, or interrupt a service
+                that should remain available.
+            </p>
+
+            <p>
+                This demonstrates an important limitation of autonomous security
+                systems: automation does not automatically correct bad information.
+                Instead, automation can make decisions faster based on the information
+                it receives. If that information is incomplete or wrong, the system may
+                also make a wrong decision faster.
+            </p>
+
+            <p>
+                Because of this, organizations need processes for maintaining and
+                validating asset information. AI should not be expected to compensate
+                for inaccurate information about the environment it is protecting.
+            </p>
+
+            <h2>Where Human Judgment Must Remain</h2>
+
+            <p>
+                Even if AI becomes highly capable, there are situations where human
+                judgment should remain essential. Major cybersecurity incidents are one
+                example. If an incident could affect a critical system, important
+                business operations, or a large number of users, the consequences of an
+                incorrect automated response could be significant.
+            </p>
+
+            <p>
+                Human analysts should also remain involved when the available evidence
+                is incomplete or contradictory. AI can analyze information quickly, but
+                cybersecurity decisions sometimes require understanding the wider
+                organizational situation. A human may know that a particular activity
+                is related to approved maintenance, a business process, or an unusual
+                but legitimate situation.
+            </p>
+
+            <p>
+                Human oversight is also important because cybersecurity decisions can
+                involve accountability. If an automated action causes a major
+                disruption, an organization needs to know who was responsible for
+                establishing the rules and approving the level of authority given to
+                the AI system.
+            </p>
+
+            <p>
+                The NIST Artificial Intelligence Risk Management Framework emphasizes
+                managing risks associated with AI systems and promoting trustworthy and
+                responsible AI practices (National Institute of Standards and
+                Technology, 2023). This supports the need for organizations to consider
+                not only what an AI system can do, but also whether its use is
+                reliable, secure, and appropriately governed.
+            </p>
+
+            <p>
+                For this reason, I do not think the best SOC model is "AI versus
+                humans." A better model is AI working with humans. AI can handle speed,
+                scale, and repetitive work, while human analysts remain responsible for
+                difficult decisions and situations where the consequences are
+                significant.
+            </p>
+
+            <h2>What Skills Would I Need to Become a SOC Pilot?</h2>
+
+            <p>
+                If AI becomes more involved in SOC operations, cybersecurity
+                professionals will still be needed. However, their responsibilities
+                may change. Instead of spending most of their time manually reviewing
+                every alert, analysts may spend more time supervising AI systems,
+                validating their decisions, and handling situations that require human
+                judgment.
+            </p>
+
+            <p>
+                The first skill I would need is a strong foundation in cybersecurity. I
+                would need to understand networks, authentication, access control,
+                security monitoring, common attack techniques, and incident response.
+                Without this knowledge, it would be difficult to determine whether an
+                AI-generated recommendation is reasonable.
+            </p>
+
+            <p>
+                I would also need AI literacy. A SOC pilot should understand the
+                capabilities and limitations of AI systems. This includes knowing that
+                an AI recommendation is not automatically correct simply because it was
+                generated quickly or based on a large amount of data.
+            </p>
+
+            <p>
+                Critical thinking would be another important skill. A SOC pilot should
+                be able to question an AI decision and ask whether the evidence
+                actually supports the recommended action. If an AI wants to isolate a
+                device, for example, the analyst should be able to determine whether
+                the device is truly compromised and whether isolating it could affect
+                important operations.
+            </p>
+
+            <p>
+                Communication skills would also remain important. During a major
+                cybersecurity incident, the SOC pilot may need to explain the situation
+                to managers, system administrators, and other teams. The ability to
+                communicate technical information clearly would therefore remain
+                valuable even in a highly automated SOC.
+            </p>
+
+            <p>
+                Finally, I would need to develop the ability to work with automation
+                rather than compete against it. Instead of thinking that AI will
+                replace every cybersecurity professional, I would focus on becoming the
+                person who knows how to supervise, question, and improve AI-assisted
+                security operations.
+            </p>
+
+            <h2>Conclusion</h2>
+
+            <p>
+                The SOC pilot model is realistic, but I believe it is responsible only
+                when automation is introduced with clear boundaries and human
+                oversight. AI can provide major benefits by monitoring systems,
+                analyzing large amounts of security information, prioritizing alerts,
+                and performing approved routine actions.
+            </p>
+
+            <p>
+                However, AI cannot make responsible decisions without reliable context.
+                If asset information is incomplete or incorrect, the AI may
+                misunderstand the importance of a system and respond inappropriately.
+                This is especially dangerous when automated actions could interrupt
+                critical services or affect legitimate users.
+            </p>
+
+            <p>
+                Human analysts therefore still have an important role. Their role may
+                change from manually handling every alert to supervising AI, validating
+                important decisions, responding to unusual situations, and taking
+                responsibility for high-impact actions.
+            </p>
+
+            <p>
+                For me, becoming a SOC pilot would mean developing both technical and
+                human skills. I would need cybersecurity knowledge, AI literacy,
+                critical thinking, incident response skills, and strong communication.
+                The goal would not be to compete with AI but to understand how to use it
+                responsibly.
+            </p>
+
+            <p>
+                AI may eventually take the wheel for many routine parts of security
+                operations, but humans should still know where the organization is
+                going, what could go wrong, and when it is necessary to take control.
+                That is what makes the SOC pilot model not only realistic, but
+                potentially responsible.
             </p>
 
             <h2>References</h2>
 
             <p class="reference-entry">
-                Dawson, M., Bacius, R., Gouveia, L. B., & Vassilakos, A. (2021).
-                <em>Understanding the challenge of cybersecurity in critical infrastructure sectors.</em>
-                Land Forces Academy Review, 26(1), 69-75.
-                https://reference-global.com/article/10.2478/raft-2021-0011
+                National Institute of Standards and Technology. (2023).
+                <em>Artificial intelligence risk management framework (AI RMF 1.0).</em>
+                U.S. Department of Commerce.
+                <a
+                    href="https://doi.org/10.6028/NIST.AI.100-1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    https://doi.org/10.6028/NIST.AI.100-1
+                </a>
             </p>
 
             <p class="reference-entry">
-                Pascoe, C., Quinn, S., & Scarfone, K. (2024). The NIST cybersecurity framework (CSF) 2.0.
-                https://www.nist.gov/publications/nist-cybersecurity-framework-csf-20
+                National Institute of Standards and Technology. (2024).
+                <em>The NIST Cybersecurity Framework (CSF) 2.0</em>
+                (NIST Cybersecurity White Paper No. 29).
+                U.S. Department of Commerce.
+                <a
+                    href="https://doi.org/10.6028/NIST.CSWP.29"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    https://doi.org/10.6028/NIST.CSWP.29
+                </a>
+            </p>
+
+            <p class="reference-entry">
+                Velisaris, J. (2025).
+                <em>How agentic AI enables an autonomous SOC with minimal human involvement.</em>
+                IBM.
+                <a
+                    href="https://www.ibm.com/think/insights/agentic-ai-enables-autonomous-soc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    https://www.ibm.com/think/insights/agentic-ai-enables-autonomous-soc
+                </a>
             </p>
 
         </div>
@@ -515,34 +1139,61 @@ Ultimately, shipping software quickly should never come at the expense of privac
 
 </section>
 
-        <section id="post-not-found">
-            <h1>Blog Post Not Found</h1>
-            <p>Please use <strong>post.html?id=1</strong> for Blog Post 1 or <strong>post.html?id=2</strong> for Blog Post 2.</p>
-            <p><a href="blog.html">Return to the Blog page</a></p>
-        </section>
+<!-- ================= END BLOG POST 4 ================= -->
 
-    </main>
+<section id="post-not-found">
+    <h1>Blog Post Not Found</h1>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const params = new URLSearchParams(window.location.search);
-            const postId = params.get("id");
+    <p>
+        Please use
+        <strong>post.html?id=1</strong> for Blog Post 1,
+        <strong>post.html?id=2</strong> for Blog Post 2,
+        <strong>post.html?id=3</strong> for Blog Post 3, or
+        <strong>post.html?id=4</strong> for Blog Post 4.
+    </p>
 
-            const blog1 = document.getElementById("secure-design-post");
-            const blog2 = document.getElementById("risk-assessment-post");
-            const notFound = document.getElementById("post-not-found");
+    <p>
+        <a href="blog.html">Return to the Blog page</a>
+    </p>
+</section>
 
-            if (postId === "1") {
-                blog1.style.display = "block";
-                document.title = "Blog Post 1 | Jaina's Learning Journal";
-            } else if (postId === "2") {
-                blog2.style.display = "block";
-                document.title = "Blog Post 2 | Jaina's Learning Journal";
-            } else {
-                notFound.style.display = "block";
-            }
-        });
-    </script>
+</main>
+
+
+   <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const params = new URLSearchParams(window.location.search);
+    const postId = params.get("id");
+
+    const blog1 = document.getElementById("secure-design-post");
+    const blog2 = document.getElementById("risk-assessment-post");
+    const blog3 = document.getElementById("asset-audit-post");
+    const blog4 = document.getElementById("soc-pilot-post");
+    const notFound = document.getElementById("post-not-found");
+
+    if (postId === "1" && blog1) {
+        blog1.style.display = "block";
+        document.title = "Blog Post 1 | Jaina's Learning Journal";
+
+    } else if (postId === "2" && blog2) {
+        blog2.style.display = "block";
+        document.title = "Blog Post 2 | Jaina's Learning Journal";
+
+    } else if (postId === "3" && blog3) {
+        blog3.style.display = "block";
+        document.title = "Blog Post 3 | Jaina's Learning Journal";
+
+    } else if (postId === "4" && blog4) {
+        blog4.style.display = "block";
+        document.title = "Blog Post 4 | Jaina's Learning Journal";
+
+    } else if (notFound) {
+        notFound.style.display = "block";
+    }
+
+});
+</script>
 
 </body>
 </html>

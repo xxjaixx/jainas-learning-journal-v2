@@ -2004,3 +2004,27 @@
     text-indent: -36px;
     margin-bottom: 18px;
 }
+/* Show Blog Post 2 when Read Blog Post is clicked */
+#risk-assessment-post {
+    display: none;
+}
+
+#risk-assessment-post:target {
+    display: block;
+}   
+#risk-assessment-post {
+    display: none;
+}
+
+#risk-assessment-post:target {
+    display: block;
+}
+/* ================= BLOG POST 3 ================= */
+
+#asset-audit-post {
+    display: none;
+}
+
+#asset-audit-post:target {
+    display: block;
+}
